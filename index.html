@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jojo's Pod - 众豆的豆</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #fdfcf9;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      padding: 2rem 1rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 0;
+    }
+    .logo {
+      width: 80px;
+      height: auto;
+    }
+    .episode {
+      max-width: 600px;
+      margin: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .episode img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.svg" alt="Jojo's Pod logo" class="logo" />
+    <h1>Jojo's Pod</h1>
+    <p class="subtitle">声音，小画，文字，众豆的豆播客计划</p>
+  </header>
+
+  <section class="episode">
+    <h2>第0期：一声轻轻的喵</h2>
+    <img src="IMG_1009.jpg" alt="Episode 0 illustration" />
+    <audio controls>
+      <source src="jojo_intro.wav" type="audio/wav" />
+      Your browser does not support the audio element.
+    </audio>
+    <p>清晨鸟鸣之后，是一声轻轻的喵。这是 Jojo's Pod 的起点。未来，我们将慢慢讲述声音与图像之间的秘密。</p>
+  </section>
+</body>
+</html>
