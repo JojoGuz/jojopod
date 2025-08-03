@@ -50,6 +50,21 @@
       width: 100%;
       margin-top: 1rem;
     }
+    .rss {
+      margin-top: 2em;
+      display: flex;
+      align-items: center;
+    }
+    .rss img {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5em;
+    }
+    footer {
+      margin-top: 4em;
+      font-size: 0.9em;
+      color: #999;
+    }
   </style>
 </head>
 <body>
@@ -68,12 +83,18 @@
     </audio>
     <p>Joho~ Jojo's Pod 从这里出发</p>
   </section>
+
+ <div class="rss">
+    <a href="feed.xml" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Feed-icon.svg" alt="RSS Feed">
+    </a>
+    <a href="feed.xml" target="_blank">RSS订阅</a>
+  </div>
+
+  <footer>
+    © 2025 众豆的豆 - Jojo's Pod | 自制播客 | 实验计划
+  </footer>
   
-  <a href="feed.xml" target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Feed-icon.svg" 
-       alt="RSS Feed" 
-       style="width: 24px; height: 24px; vertical-align: middle;">
-  RSS订阅
 </a>
 </body>
 </html>
