@@ -5,22 +5,18 @@
     <link>https://jojopod.live/</link>
     <description>声音，小画，文字，众豆的豆播客计划</description>
     <language>zh-cn</language>
-    <copyright>© 2025 Jojo</copyright>
-    <lastBuildDate>Sun, 03 Aug 2025 12:00:00 +0800</lastBuildDate>
-
-    <image>
-    <url>https://jojopod.live/rss-icon.svg</url>
-    <title>Jojo's Pod</title>
-    <link>https://jojopod.live</link>
-    </image>
+    <itunes:author>Jojo</itunes:author>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Arts"/>
+    <itunes:image href="https://jojopod.live/jojopod_logo_temp.png"/>
 
     <item>
       <title>No.0: 喵一期</title>
       <description>Joho Miaoho Jojo's Pod 从这里出发</description>
       <pubDate>Sun, 03 Aug 2025 12:00:00 +0800</pubDate>
-      <guid>https://jojopod.live/jojo_intro_louder.wav</guid>
-      <link>https://jojopod.live/</link>
-      <enclosure url="https://jojopod.live/jojo_intro_louder.wav" type="audio/wav" length="5631111" />
+      <enclosure url="https://jojopod.live/jojo_intro_louder.mp3" length="1234567" type="audio/mpeg" />
+      <guid>https://jojopod.live/jojo_intro_louder.mp3</guid>
+      <itunes:duration>00:00:40</itunes:duration>   
     </item>
 
   </channel>
