@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jojo's Pod - 众豆的豆</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #fdfcf9;
+      margin: 0;
+      padding: 0;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      padding: 2rem 1rem 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 0;
+    }
+    .logo {
+      width: 80px;
+      height: auto;
+    }
+    .episode {
+      max-width: 600px;
+      margin: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .episode img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .shownotes {
+      margin-top: 1rem;
+    }
+    .toggle-btn {
+      background: none;
+      border: none;
+      color: #0077cc;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0;
+    }
+    .notes-content {
+      display: none;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #444;
+      white-space: pre-line;
+    }
+    .rss {
+      margin-top: 2em;
+      display: flex;
+      align-items: center;
+    }
+    .rss img {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5em;
+    }
+    footer {
+      margin-top: 4em;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="jojopod_logo_temp.png" alt="Jojo's Pod logo" class="logo" />
+    <h1>Jojo's Pod</h1>
+    <p class="subtitle">声音，小画，文字，众豆的豆播客计划</p>
+  </header>
+
+  <section class="episode">
+    <h2>No.1: 喵一小段</h2>
+    <img src="IMG_1018.jpeg" alt="Episode 1 illustration" />
+    <audio controls>
+      <source src="jojopod_episode1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <div class="shownotes">
+      <button class="toggle-btn" onclick="toggleNotes(this)">展开 Shownotes</button>
+      <div class="notes-content">
+        你好，这里是 Jojo' Pod。
+        今天，我来读一小段文字，让我们跟随一只猫的目光，在哲学里发一会儿呆。
+
+        --- 原文节选 ---
+        ... 我们日常生活的常规运作当然不是一种我们动物性的简单延续，
+        这种动物性为精神活动不断地超离。...
+        (Levinas, De l'existence à l'existant)
+
+        English:
+        The daily run of our everyday life is surely not a simple sequel
+        of our animality continually surpassed by spiritual activity.
+
+        Deutsch:
+        Der Trott unseres Alltagslebens ist gewiss nicht nur eine einfache
+        Folge unserer Animalität, die unaufhörlich durch die Tätigkeit des Geistes überstiegen wird.
+
+        Français:
+        Le train-train de notre vie quotidienne n'est certes pas une simple séquelle
+        de notre animalité, constamment dépassée par l'activité de l'esprit.
+      </div>
+    </div>
+  </section>
+
+  <section class="episode">
+    <h2>No.0: 先喵一期 </h2>
+    <img src="IMG_1009.jpg" alt="Episode 0 illustration" />
+    <audio controls>
+      <source src="jojo_intro_louder_original.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <p>Joho Miaoho ~ Jojo's Pod 从这里出发</p>
+  </section>
+
+  <div class="rss">
+    <a href="feed.xml" target="_blank">
+      <img src="rss-icon.svg" alt="RSS Feed">
+    </a>
+    <a href="feed.xml" target="_blank">RSS订阅</a>
+  </div>
+
+  <footer>
+    © 2025 众豆的豆 - Jojo's Pod | 自制播客 | 实验计划
+  </footer>
+
+  <script>
+    function toggleNotes(button) {
+      const notes = button.nextElementSibling;
+      if (notes.style.display === "block") {
+        notes.style.display = "none";
+        button.textContent = "展开 Shownotes";
+      } else {
+        notes.style.display = "block";
+        button.textContent = "收起 Shownotes";
+      }
+    }
+  </script>
+</body>
+</html>
