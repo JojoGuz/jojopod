@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
@@ -84,6 +84,27 @@
       font-size: 0.9em;
       color: #999;
     }
+    .footnotes {
+      margin-top: 1em;
+      font-size: 0.9em;
+      color: #444;
+    }
+    .footnotes h3 {
+      font-size: 1em;
+      margin-bottom: 0.5em;
+      color: #333;
+    }
+    .footnotes p {
+      margin: 0.3em 0;
+      line-height: 1.4;
+    }
+    .notes-content sup a {
+      text-decoration: none;
+      color: #666;
+    }
+    .notes-content sup a:hover {
+      color: #000;
+    }
   </style>
 </head>
 <body>
@@ -109,7 +130,7 @@
 
         片思 01 | 动静之间  Erde·Welt·the Cat
         
-        河边有一小片核桃树林，冬天的时候，枝桠冷峻，加之有几处坟包墓碑，让这里颇有几分北爱尔兰黑暗树篱 the Dark Hedges <sup>1</sup> 的感觉。
+        河边有一小片核桃树林，冬天的时候，枝桠冷峻，加之有几处坟包墓碑，让这里颇有几分北爱尔兰黑暗树篱 the Dark Hedges <sup><a href="#fn1">1</a></sup> 的感觉。
         By the river lies a small grove of walnut trees. In winter, the bare branches stand in stern outline, and the few mounds and gravestones scattered within, lend the place a faint air of the Dark Hedges of Northern Ireland.
         
         但是，初春以后，就是另外一番景象。大片大片形状有几分かわいい(可爱)的核桃树叶，很快让僵直硬朗的枝干成为配角。在午后光线的穿梭游离中，数个层次的绿色，让这一小小的场域再次焕发生机。
@@ -118,10 +139,10 @@
         树林边有一间简易的小棚屋，大概是一位在河上行船捕鱼的老人临时的落脚点。虽然用不同形状的废弃木板和铁皮搭起来，却也稳固，即使狂风暴雨，从来也不会倒。
         At the edge of the grove stands a simple shack — perhaps the resting place of an old fisherman who plies the river. Patched together from odd planks and pieces of tin, it is nonetheless solid, withstanding wind and storm without ever collapsing.
         
-        那天我骑行路过，在这棚屋边的河岸短暂停留。几颗永远长不高的香椿树，在这一季屡次被摘芽后，总算又显出树的形状；如果庄子看到，大概会沉思一下栋梁与摴栎之辩<sup>2</sup>。地上的杂草在悄无声息中返青，长高，几弯牵牛花的藤曼攀在水边一颗老柳树上。我借机独享这一刻的宁静。
+        那天我骑行路过，在这棚屋边的河岸短暂停留。几颗永远长不高的香椿树，在这一季屡次被摘芽后，总算又显出树的形状；如果庄子看到，大概会沉思一下栋梁与摴栎之辩<sup><a href="#fn2">2</a></sup>>。地上的杂草在悄无声息中返青，长高，几弯牵牛花的藤曼攀在水边一颗老柳树上。我借机独享这一刻的宁静。
         That day, passing by on my bicycle, I stopped for a short while on the riverbank beside the shack. A few toona trees, stunted from the repeated plucking of their shoots, had at last begun to resemble trees. If Zhuangzi were here, he might have paused to ponder the debate between the timber beam and the useless tree. The weeds on the ground were quietly turning green again, growing taller; a few morning-glory vines had climbed onto an old willow by the water. I took the moment to be alone with this quiet
         
-        窸窸窣窣，一只猫从河堤的斜坡上走下来，站在一块散落的石砖旁，骄傲地看着我。他者的脸庞<sup>3</sup>，为我在对世界的观察与自身感受的往返之间增添了另一锚点。在这如画般静止的剧场里，上演着大地与世界的激烈争执。在争执中，每一个争执者都促使对方超越其自身<sup>4</sup>。
+        窸窸窣窣，一只猫从河堤的斜坡上走下来，站在一块散落的石砖旁，骄傲地看着我。他者的脸庞<sup><a href="#fn3">3</a></sup>，为我在对世界的观察与自身感受的往返之间增添了另一锚点。在这如画般静止的剧场里，上演着大地与世界的激烈争执。在争执中，每一个争执者都促使对方超越其自身<sup><a href="#fn4">4</a></sup>。
         A faint rustle — a cat descended from the slope of the river embankment, and stood proudly beside a fallen brick, staring at me. The face of the Other, added a new anchor to my oscillation between observing the world and sensing myself. In this motionless, picture-like theatre, the earth(Erde) and the world(Welt) were in a fierce strife — and, Im Streit trägt jedes das andere über sich hinaus (In this strife, each side carries the other beyond itself).
 
         ...
@@ -129,13 +150,28 @@
         Auf Wiedersehen ([aʊ̯f ˈviːdɐˌzeːən])!
         Miao~
 
+      <div class="footnotes">
+        <h3>脚注</h3>
 
-        
-          <sup>2</sup>庄子《人间世》
+          <details id="fn1">
+            <summary><sup>1</sup> 北爱尔兰 Dark Hedges</summary>
+            <p>北爱尔兰安特里姆郡著名的山毛榉林荫道，常见于影视作品。</p>
+          </details>
 
-          <details>
-          <summary><sup>3</sup> 列维纳斯《时间与他者》</summary>
-           <p>
+          <details id="fn2">
+            <summary><sup>2</sup> 庄子《人间世》</summary>
+            <p>匠石之齊，至乎曲轅，見櫟社樹。其大蔽數千牛，絜之百圍，其高臨山十仞而後有枝，其可以為舟者旁十數。觀者如市，匠伯不顧，遂行不輟。弟子厭觀之，走及匠石，曰：「自吾執斧斤以隨夫子，未嘗見材如此其美也。先生不肯視，行不輟，何邪？」
+              曰：「已矣，勿言之矣！散木也。以為舟則沉，以為棺槨則速腐，以為器則速毀，以為門戶則液樠，以為柱則蠹。是不材之木也，無所可用，故能若是之壽。」
+              匠石歸，櫟社見夢曰：「女將惡乎比予哉？若將比予於文木邪？夫柤梨橘柚果蓏之屬，實熟則剝，剝則辱。大枝折，小枝泄。此以其能苦其生者也。故不終其天年而中道夭，自掊擊於世俗者也。物莫不若是。且予求無所可用久矣，幾死，乃今得之，為予大用。使予也而有用，且得有此大也邪？且也若與予也皆物也，奈何哉其相物也！而幾死之散人，又惡知散木？」
+匠石覺而診其夢。
+              弟子曰：「趣取無用，則為社何邪？」
+              曰：「密！若無言！彼亦直寄焉，以為不知己者詬厲也。不為社者，且幾有翦乎？且也彼其所保與眾異，而以義譽之，不亦遠乎？」</p>
+          </details>
+
+          <details id="fn3">
+            <summary><sup>3</sup> 列维纳斯《时间与他者》</summary>
+            <p>他者之脸庞（le visage de l’Autre）并非经验对象，而是一种伦理呼唤。</p>
+            <p>
         中文译文：<br>
         在帕斯卡、克尔凯郭尔、尼采与海德格尔式的焦虑之中，我们的举止却像些可怖的资产阶级。或者，我们就是疯了。但没有人会把疯狂当作一种得救之道。
 莎士比亚悲剧中的丑角——那个傻子——是能够清醒地感受到、并说出世界之不可靠性与各种处境之荒谬的人。他不是悲剧的主角，他没有什么需要去克服。在国王、王子与英雄的世界里，他是一道裂口，使这个世界被疯狂的气流所穿透——但他并非那场熄灭灯火、扯下帷幕的风暴。纵然人们将那些填满我们漫长日子的全部事务、将我们从孤独中拉走并抛入与同类的关系中的事务，称作“堕落”、“日常生活”、“动物性”、“堕化”或“卑鄙的物质主义”，这些事务无论如何都丝毫不轻佻。人们或许会认为，真实的时间本是某种原初的出神（extase；法文的“extase”更贴近海德格尔的 Ekstase（出神、超越时间性的开放状态），这个哲学背景在列维纳斯里很关键）——然而，我们还是会给自己买一块手表；尽管存在是赤裸的，我们仍必须尽可能体面地穿着。而当我们写一本论焦虑的书时，这本书总是写给某个人的，我们会经历从初稿到出版的所有步骤，有时甚至会表现得像一个贩卖焦虑的商人。一个被判死刑的人，会在最后的行程中理好衣衫，接受最后一支香烟，并在枪声响起之前找到一个富有表现力的词。
@@ -147,12 +183,16 @@
           <p>
       English translation:<br>
       ... We behave like the frightful bourgeois in the midst of Pascalian, Kierkegaardian, Nietzschean, and Heideggerian anxieties. Or we are crazy. No one will recommend madness as a way of salvation. The buffoon, the fool of Shakespearean tragedy, is the one who feels and bespeaks with lucidity the unsubstantiality of the world and the absurdity of its situations-the one who is not the principal character of tragedy, the one who has nothing to overcome. In a world of kings, princes, and heroes, the fool is the opening through which this world is swept by drafts of madness; the fool is not the tempest that extinguishes the lights and tears away the curtains. However much the entirety of preoccupations that fill our days and tear us away from solitude to throw us into contact with our peers are called "fall," "everyday life," "animality" "degradation" or "base materialism" these preoccupations are in any case in no way frivolous. One can think that authentic time is originally an ecstasis, 35 yet one buys oneself a watch; despite the nudity of existence, one must as far as possible be decently clothed. And when one writes a book on anxiety, one writes it for someone, one goes through all the steps that separate the draft from the publication, and one sometimes behaves like a merchant of anxiety. The man condemned to die straightens out his uniform before his last walk, accepts a final cigarette, and finds an eloquent word before the salvo.
-        </p>
-   
-        </details>
-        
-        <sup>4</sup>海德格尔《艺术作品的本源》
-        
+          </p>
+          
+          </details>
+
+            <details id="fn4">
+            <summary><sup>4</sup> 海德格尔《艺术作品的本源》</summary>
+            <p><em>Im Streit trägt jedes das andere über sich hinaus.</em> 在大地与世界的争执中，双方彼此推动，超越自我。</p>
+            </details>
+        </div>
+     
       </div>
     </div>
   </section>
