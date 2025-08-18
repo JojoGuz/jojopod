@@ -129,6 +129,16 @@
       content: " 🐾"; /* 鼠标移上去时再出现一只额外的猫爪 */
       font-size: 1.1em;
       margin-left: 0.2em;
+      display: inline-block;
+      animation: wag-tail 0.5s ease-in-out 2; /* 抖两下 */
+     }
+    @keyframes wag-tail {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(15deg); }
+      50% { transform: rotate(-15deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+     }    
   </style>
 </head>
 <body>
@@ -182,7 +192,7 @@
           <p id="fn3"><sup>3</sup> 列维纳斯《时间与他者》：我们日常生活的日复一日，当然绝非仅仅是那种不断被心灵的活动所超越的动物性的一个简单后遗。</p>
           <p id="fn4"><sup>4</sup> 海德格尔《艺术作品的本源》：在本质性的争执中，争执者双方相互进入其本质的自我确立中。</p>
         
-          <p style="margin-top:1.0em;">
+          <p style="margin-top:0.6em;">
           👉 <a href="notes1.html">查看完整注释，了解哲思路径 🐾</a>
           </p>
         
