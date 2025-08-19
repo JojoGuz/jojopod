@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML & CSS 小抄 🐾</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 0 1em;
+      color: #333;
+      background: #fafafa;
+    }
+    h1, h2 {
+      color: #222;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.3em;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      background: white;
+    }
+    th, td {
+      padding: 0.6em;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background: #eee;
+    }
+    a {
+      color: #444;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      color: #ff6600;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTML & CSS 小抄 🐾</h1>
+  <p>常用标签 & 属性，够日常排版、做注释、改样式。</p>
+
+  <h2>📌 HTML 基础标签</h2>
+  <table>
+    <tr><th>标签</th><th>用途</th><th>示例</th></tr>
+    <tr><td><code>&lt;p&gt;</code></td><td>段落</td><td><code>&lt;p&gt;文字&lt;/p&gt;</code></td></tr>
+    <tr><td><code>&lt;br&gt;</code></td><td>换行</td><td><code>第一行&lt;br&gt;第二行</code></td></tr>
+    <tr><td><code>&lt;a&gt;</code></td><td>超链接</td><td><code>&lt;a href="notes1.html"&gt;注释&lt;/a&gt;</code></td></tr>
+    <tr><td><code>&lt;img&gt;</code></td><td>插图</td><td><code>&lt;img src="cover.jpg" alt="封面"&gt;</code></td></tr>
+    <tr><td><code>&lt;sup&gt;</code></td><td>上标</td><td><code>文字&lt;sup&gt;1&lt;/sup&gt;</code></td></tr>
+    <tr><td><code>&lt;strong&gt;</code></td><td>粗体</td><td><code>&lt;strong&gt;重点&lt;/strong&gt;</code></td></tr>
+    <tr><td><code>&lt;em&gt;</code></td><td>斜体</td><td><code>&lt;em&gt;外文&lt;/em&gt;</code></td></tr>
+    <tr><td><code>&lt;blockquote&gt;</code></td><td>引用</td><td><code>&lt;blockquote&gt;引用&lt;/blockquote&gt;</code></td></tr>
+  </table>
+
+  <h2>🎨 CSS 常用属性</h2>
+  <table>
+    <tr><th>属性</th><th>用途</th><th>示例</th></tr>
+    <tr><td><code>color</code></td><td>字体颜色</td><td><code>color: gray;</code></td></tr>
+    <tr><td><code>font-size</code></td><td>字体大小</td><td><code>font-size: 14px;</code></td></tr>
+    <tr><td><code>line-height</code></td><td>行距</td><td><code>line-height: 1.6;</code></td></tr>
+    <tr><td><code>margin</code></td><td>外边距</td><td><code>margin: 1em 0;</code></td></tr>
+    <tr><td><code>padding</code></td><td>内边距</td><td><code>padding: 0.5em;</code></td></tr>
+    <tr><td><code>border</code></td><td>边框</td><td><code>border: 1px solid #ccc;</code></td></tr>
+    <tr><td><code>a:hover</code></td><td>悬停效果</td><td><code>a:hover { color: orange; }</code></td></tr>
+  </table>
+
+  <h2>🐾 示例</h2>
+  <pre><code>&lt;p&gt;这里是一段文字&lt;sup&gt;1&lt;/sup&gt;&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+  &lt;p id="fn1"&gt;&lt;sup&gt;1&lt;/sup&gt; 这是脚注。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+  <pre><code>&lt;p&gt;
+👉 &lt;a href="notes1.html"&gt;查看完整注释 🐾&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;style&gt;
+a { color: #444; text-decoration: none; }
+a:hover { color: #ff6600; }
+&lt;/style&gt;</code></pre>
+
+</body>
+</html>
