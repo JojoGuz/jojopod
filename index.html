@@ -141,6 +141,35 @@
       75% { transform: rotate(10deg); }
       100% { transform: rotate(0deg); }
      }    
+    /* 时间戳列表样式 */
+.timestamps {
+  list-style: none;       /* 去掉默认圆点 */
+  padding: 0;
+  margin: 1em 0;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.timestamps li {
+  margin: 0.3em 0;
+}
+
+.timestamps button {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-right: 6px;
+  font-family: monospace;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.timestamps button:hover {
+  background: #e0e0e0;
+}
+    
   </style>
 </head>
 <body>
@@ -151,32 +180,54 @@
   </header>
 
  <section class="episode">
-    <h2>Ep.4: 德语时刻 | Jojo 与 Yoyo</h2>
-    <img src="sketch_episode4.jpg" alt="Episode 4 illustration" />
-    <audio controls>
-      <source src="jojopod_episode4.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
-    <p class="intro">德语磕磕巴巴，英语被带跑调，摇滚硬是被我唱成了民谣。嗯，勇敢就是要发出来。<br>
-    My German is stumbling, my English slips off pitch, and somehow rock turned into folk. Well, courage means putting it out anyway. 👇</p>
+  <h2>Ep.4: 德语时刻 | Jojo 与 Yoyo</h2>
+  <img src="sketch_episode4.jpg" alt="Episode 4 illustration" />
+  <audio id="episode4-audio" controls>
+    <source src="jojopod_episode4.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  <p class="intro">德语磕磕巴巴，英语被带跑调，摇滚硬是被我唱成了民谣。嗯，勇敢就是要发出来。<br>
+  My German is stumbling, my English slips off pitch, and somehow rock turned into folk. Well, courage means putting it out anyway. 👇</p>
 
-    <div class="shownotes">
-      <button class="toggle-btn" onclick="toggleNotes(this)">展开 Shownotes</button>
-      <div class="notes-content">
-      
-      在本期节目中，我从名字“Jojo”在德语里的读音聊起，走进语言的奇妙世界。字母 J 在不同语言中如何变化：英语的 John，法语的 Jean，西班牙语的 Juan，德语的 Johannes，都指向共同的古老来源。语言的交错不仅带来趣味，也揭示了文化与历史的深层联系。  
-      我还谈到电影《Jojo Rabbit》里 Beatles 的德语版歌曲，以及 Bowie 的德语版 *Helden*，当墙与歌声交织，语言让讽刺与感动更为强烈。  
-      节目最后引用了里尔克的诗句 *Lass dir Alles geschehn...*  
+  <div class="shownotes">
+    <button class="toggle-btn" onclick="toggleNotes(this)">展开 Shownotes</button>
+    <div class="notes-content">
 
-      In this episode, I start from the German pronunciation of “Jojo” and open up a journey into the world of languages. The letter *J* changes shape across English, French, Spanish, and German, yet all trace back to ancient roots. Such crossings are not only fun but also reveal deeper cultural and historical layers.  
-      I also revisit *Jojo Rabbit*, where the Beatles sing in German, and Bowie’s *Helden* closes the film — songs and walls intertwined, irony and emotion intensified by language.  
-      The episode ends with Rilke’s lines *Lass dir Alles geschehn...* echoing the film. Language learning, I believe, is not just about sounds and words, but a way to step beyond oneself into the wider world.  
+      <ul class="timestamps">
+        <li><button data-seconds="0">00:00</button> 【开场】Intro — 简短问候与主题预告</li>
+        <li><button data-seconds="20">00:20</button> 【字母 J 的发音旅行】Across languages: John / Jean / Juan / Johannes</li>
+        <li><button data-seconds="49">00:49</button> 【字母 J 的历史来源】Ioannes, Yohanan, J 从 I 演变而来</li>
+        <li><button data-seconds="99">01:39</button> 【电影《Jojo Rabbit》里的 Jojo】昵称与悠悠球意象</li>
+        <li><button data-seconds="135">02:15</button> 【片头曲】Beatles 德语版 <em>Komm, gib mir deine Hand</em></li>
+        <li><button data-seconds="192">03:12</button> 【片尾曲】Bowie 德语版 <em>Helden</em> 与“墙”的隐喻</li>
+        <li><button data-seconds="222">03:42</button> 【语言拓展理解力】How languages expand perception</li>
+        <li><button data-seconds="268">04:28</button> 【语言与自我解放】Einstein’s reflection on transcending the self</li>
+        <li><button data-seconds="333">05:33</button> 【里尔克诗句】<em>Lass dir Alles geschehn...</em></li>
+        <li><button data-seconds="410">06:50</button> 【生命因其深重而飞升】Life’s gravity makes it real</li>
+        <li><button data-seconds="429">07:09</button> 【结尾】Χαίρετε — Thanks & sign-off</li>
+        <li><button data-seconds="444">07:24</button> 【彩蛋】Helden 片段弹唱 (ukulele snippet)</li>
+      </ul>
 
       <p class="footnotes more-link">🐾 <a href="transcript4.html" target="_blank">Read Transcript / 阅读全文稿</a></p>
-        
-      </div>
     </div>
-   </section>
+  </div>
+</section>
+
+<script>
+  (function(){
+    const audio = document.getElementById('episode4-audio');
+    if (!audio) return;
+    document.querySelectorAll('.timestamps button[data-seconds]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const s = Number(btn.getAttribute('data-seconds'));
+        if (isNaN(s)) return;
+        audio.currentTime = s;
+        audio.play();
+      });
+    });
+  })();
+</script>
+<!-- END clickable shownotes -->
   
   <section class="episode">
     <h2>Ep.3: 社会热点 | AI的日常与思考</h2>
