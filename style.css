@@ -1,0 +1,61 @@
+body {
+    font-family: "Noto Serif SC", serif;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #333;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5em;
+  }
+
+  h2 {
+    margin-top: 2em;
+    color: #444;
+  }
+
+  p {
+    margin: 0.6em 0;
+  }
+
+  .time {
+    font-weight: bold;
+    color: #222;
+    font-size: 1.05em;
+  }
+
+  section {
+    margin-bottom: 2em;
+  }
+
+  .cn {
+    margin-top: 0.5em;
+    padding-left: 1em;
+    border-left: 3px solid #ddd;
+  }
+
+  .en {
+    margin-top: 0.3em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+    font-style: italic;
+  }
+
+  .footnotes {
+    margin-top: 2em;
+    font-size: 0.9em;
+    color: #666;
+  }
+
+  .back-link {
+    margin-top: 2em;
+    text-align: center;
+  }
+
+  .back-link a {
+    text-decoration: none;
+    color: #3366cc;
+    font-weight: bold;
+  }
