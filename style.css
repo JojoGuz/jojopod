@@ -15,12 +15,16 @@ body {
     margin-top: 2em;
     color: #444;
   }
+  
   h3.subtitle {
-  text-align: center;
-  font-weight: normal;
-  margin: -1em 0 2em 0;
-  color: #555;
-  font-size: 1.1em;
+  display: block;
+  text-align: center;       /* 居中显示 */
+  font-weight: 400;         /* 常规字重 */
+  font-size: 1.05rem;       /* 略小于 h1 */
+  color: #555;              /* 稍淡，作为副标题 */
+  font-family: inherit;     /* 继承 body 的字体，避免“字体不对” */
+  margin: -0.6em 0 1.4em 0; /* 上边距负值使其紧贴 h1，下边距保持间隔 */
+  line-height: 1.15;
   }
 
   p {
