@@ -8,7 +8,7 @@ body {
 
   h1 {
     text-align: center;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.3em;
   }
 
   h2 {
@@ -23,7 +23,7 @@ body {
   font-size: 1.05rem;       /* 略小于 h1 */
   color: #555;              /* 稍淡，作为副标题 */
   font-family: inherit;     /* 继承 body 的字体，避免“字体不对” */
-  margin: -0.6em 0 1.4em 0; /* 上边距负值使其紧贴 h1，下边距保持间隔 */
+  margin: -0.1em 0 1.4em 0; /* 上边距负值使其紧贴 h1，下边距保持间隔 */
   line-height: 1.15;
   }
 
