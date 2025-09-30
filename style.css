@@ -15,6 +15,13 @@ body {
     margin-top: 2em;
     color: #444;
   }
+  h3.subtitle {
+  text-align: center;
+  font-weight: normal;
+  margin: -1em 0 2em 0;
+  color: #555;
+  font-size: 1.1em;
+  }
 
   p {
     margin: 0.6em 0;
