@@ -55,6 +55,14 @@ body {
     font-style: italic;
   }
 
+  pre, code {
+  background: #f4f4f4;       /* 背景颜色，浅灰色，突出歌词块 */
+  padding: 0.5rem;           /* 内边距，文字不贴边 */
+  border-radius: 4px;        /* 圆角边框 */
+  overflow-x: auto;          /* 内容超出宽度时显示水平滚动条 */
+  font-family: monospace;    /* 等宽字体，保持对齐 */
+  }
+
   .footnotes {
     margin-top: 2em;
     font-size: 0.9em;
