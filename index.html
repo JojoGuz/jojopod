@@ -218,7 +218,7 @@ document.querySelectorAll('.timestamps').forEach(list => {
     <button class="toggle-btn" onclick="toggleNotes(this)">展开 Shownotes</button>
     <div class="notes-content">
 
-      <ul class="timestamps" data-audio="audio-ep4">
+      <ul class="timestamps" data-audio="episode4-audio">
         <li><button data-seconds="0">00:00</button>【开场】 Intro</li>
         <li><button data-seconds="20">00:20</button> 【字母 J 的发音旅行】The pronunciation journey of the letter J.</li>
         <li><button data-seconds="49">00:49</button> 【字母 J 的历史来源】The historical origins of the letter J.</li>
@@ -236,23 +236,7 @@ document.querySelectorAll('.timestamps').forEach(list => {
       <p class="footnotes more-link">🐾 <a href="transcript_ep4.html" target="_blank">Read Transcript / 阅读全文稿</a></p>
     </div>
   </div>
-</section>
-
-<script>
-  (function(){
-    const audio = document.getElementById('episode4-audio');
-    if (!audio) return;
-    document.querySelectorAll('.timestamps button[data-seconds]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const s = Number(btn.getAttribute('data-seconds'));
-        if (isNaN(s)) return;
-        audio.currentTime = s;
-        audio.play();
-      });
-    });
-  })();
-</script>
-<!-- END clickable shownotes -->
+  </section>
   
   <section class="episode">
     <h2>Ep.3: 社会热点 | AI的日常与思考</h2>
@@ -266,7 +250,7 @@ document.querySelectorAll('.timestamps').forEach(list => {
       <button class="toggle-btn" onclick="toggleNotes(this)">展开 Shownotes</button>
       <div class="notes-content">
 
-      <ul class="timestamps" data-audio="audio-ep3">
+      <ul class="timestamps" data-audio="episode3-audio">
         <li><button data-seconds="0">00:00</button> 【开场】Intro</li>
         <li><button data-seconds="54">00:54</button> 【几年间chatGPT基本被闲置】Early excitement and disuse over the years.</li>
         <li><button data-seconds="94">01:34</button> 【阅读助手】Reading tough philosophy with AI’s help.</li>
@@ -284,23 +268,6 @@ document.querySelectorAll('.timestamps').forEach(list => {
       </div>
     </div>
   </section>
-
-  <script>
-  (function(){
-    const audio = document.getElementById('episode3-audio');
-    if (!audio) return;
-    document.querySelectorAll('.timestamps button[data-seconds]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const s = Number(btn.getAttribute('data-seconds'));
-        if (isNaN(s)) return;
-        audio.currentTime = s;
-        audio.play();
-      });
-    });
-  })();
-</script>
-<!-- END clickable shownotes -->
-  
 
   <section class="episode">
     <h2>Ep.2: la durée réelle｜七夕之后的鬼扯</h2>
