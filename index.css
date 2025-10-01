@@ -71,15 +71,26 @@ body {
       white-space: pre-line;
     }
 
-    .summary {
-        margin: 0.8em 0;     /* 保持上下空白 */
-        line-height: 1.5;    /* 控制行距 */
-      }
-    .summary .cn,
-    .summary .en {
-        display: block;      /* 每句单独一行 */
-        margin: 0;           /* 去掉多余段落间距 */
-      }
+    /* summary block in shownotes: top/bottom spacing but internal lines are tight */
+   .notes-content .summary {
+     margin: 0.8rem 0;        /* 整体上/下空白：根据页面视觉可调（0.6~1rem） */
+     padding: 0;              /* 不要额外内边距 */
+     font-size: 0.95rem;      /* 与 timestamps 对齐（按你现有样式调整） */
+     line-height: 1.35;       /* 控制行距（每行内部的行高） */
+     color: inherit;          /* 继承当前颜色 */
+   }
+
+   /* 每句单独成行，但不产生段落间距 */
+   .notes-content .summary .cn,
+   .notes-content .summary .en {
+     display: block;          /* 每个 span 各占一行 */
+     margin: 0;               /* 去掉默认段落间距 */
+     padding: 0;
+   }
+
+  /* 如果你想两句之间再有极小间隔（0~0.2em）可启用： */
+  /* .notes-content .summary .en { margin-top: 0.12em; } */
+
   
     .rss {
       margin-top: 2em;
