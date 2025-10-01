@@ -178,6 +178,33 @@
   .timestamps button:hover {
     background: #e0e0e0;
   }
+
+
+  /* —— 紧凑模式覆盖（安全追加，不改其他规则） —— */
+.episode {
+  margin: 1rem 0;            /* 从 2rem 缩小到 1rem（垂直更紧凑） */
+}
+
+.intro {
+  margin: 0.6em 0;           /* 从 1em 缩小到 0.6em，收紧段落上下 */
+}
+
+.shownotes {
+  margin-top: 0.2rem;        /* 进一步微调 shownotes 顶部间距 */
+}
+
+.notes-content {
+  margin-top: 0.15rem;       /* shownotes 内部内容更紧凑 */
+}
+
+.timestamps {
+  margin: 0.1em 0;           /* 比原来更紧凑 */
+  line-height: 1.4;          /* 少一点行高 */
+}
+
+.timestamps li {
+  margin: 0.04em 0;
+}
     
   </style>
 </head>
