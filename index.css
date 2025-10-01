@@ -70,6 +70,13 @@ body {
       color: #444;
       white-space: pre-line;
     }
+
+    .notes-content p {
+      margin: 0.2em 0;   /* 缩小上下间距 */
+      font-size: 0.95em; /* 与 timestamps 对齐 */
+      line-height: 1.4;  /* 紧凑一些 */
+    }
+  
     .rss {
       margin-top: 2em;
       display: flex;
