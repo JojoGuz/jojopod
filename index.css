@@ -71,13 +71,14 @@ body {
       white-space: pre-line;
     }
 
+   /* -- Shownotes intro / summary 短句（中英两行）---*/
    .notes-content span {
       font-size: 0.95rem;   /* 与时间戳一致 */
       line-height: 1.3;     /* 紧凑但可读 */
       margin: 0;            /* 确保没有额外间距 */
       padding: 0;
       color: inherit;
-      /* 不设置 display:block ，保持 inline 行为（你当前这种写法最简洁） */
+      /* 不设置 display:block ，保持 inline 行为 */
     }
   
     .rss {
