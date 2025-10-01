@@ -71,18 +71,15 @@ body {
       white-space: pre-line;
     }
 
-    .notes-content p {
-      margin: 0.2em 0;   /* 缩小上下间距 */
-      font-size: 0.95em; /* 与 timestamps 对齐 */
-      line-height: 1.4;  /* 紧凑一些 */
-    }
-
-    .notes-content span {
-      display: block;     /* 每个独立成行 */
-      margin: 0;          /* 去掉上下空白 */
-      line-height: 1.3;   /* 行距比正文更紧凑 */
-      font-size: 0.95rem; /* 与 timestamps 保持一致 */
-     }  
+    .summary {
+        margin: 0.8em 0;     /* 保持上下空白 */
+        line-height: 1.5;    /* 控制行距 */
+      }
+    .summary .cn,
+    .summary .en {
+        display: block;      /* 每句单独一行 */
+        margin: 0;           /* 去掉多余段落间距 */
+      }
   
     .rss {
       margin-top: 2em;
