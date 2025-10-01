@@ -73,7 +73,7 @@ body {
 
     /* summary block in shownotes: top/bottom spacing but internal lines are tight */
    .notes-content .summary {
-     margin: 0.8rem 0;        /* 整体上/下空白：根据页面视觉可调（0.6~1rem） */
+     margin: 0.2rem 0;        /* 整体上/下空白：根据页面视觉可调（0.6~1rem） */
      padding: 0;              /* 不要额外内边距 */
      font-size: 0.95rem;      /* 与 timestamps 对齐（按你现有样式调整） */
      line-height: 1.35;       /* 控制行距（每行内部的行高） */
