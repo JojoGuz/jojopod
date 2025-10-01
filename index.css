@@ -71,12 +71,14 @@ body {
       white-space: pre-line;
     }
 
-    .notes-content span {
- /*    display: block;     每个独立成行 */
- /*    margin: 0;          去掉上下空白 */
-  line-height: 1.3;   /* 行距比正文更紧凑 */
-  font-size: 0.95rem; /* 与 timestamps 保持一致 */
-}
+   .notes-content span {
+      font-size: 0.95rem;   /* 与时间戳一致 */
+      line-height: 1.3;     /* 紧凑但可读 */
+      margin: 0;            /* 确保没有额外间距 */
+      padding: 0;
+      color: inherit;
+      /* 不设置 display:block ，保持 inline 行为（你当前这种写法最简洁） */
+    }
   
     .rss {
       margin-top: 2em;
