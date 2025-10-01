@@ -183,19 +183,54 @@
 </head>
 
 <script>
-document.querySelectorAll('.timestamps').forEach(list => {
-  const audioId = list.getAttribute('data-audio');
-  const audio = document.getElementById(audioId);
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.timestamps').forEach(list => {
+    const audioId = list.getAttribute('data-audio');
+    const audio = document.getElementById(audioId);
+    if (!audio) return;
 
-  list.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const seconds = btn.getAttribute('data-seconds');
-      audio.currentTime = seconds;
-      audio.play();
+    list.querySelectorAll('button').forEach(btn => {
+      try { btn.type = 'button'; } catch(e){}
+
+      btn.addEventListener('click', function () {
+        const secondsAttr = btn.getAttribute('data-seconds');
+        const seconds = Number(secondsAttr) || 0;
+
+        // Pause other audios so only one plays
+        document.querySelectorAll('audio').forEach(a => {
+          if (a !== audio && !a.paused) a.pause();
+        });
+
+        function setAndPlay() {
+          try {
+            if (!isNaN(audio.duration) && isFinite(audio.duration)) {
+              audio.currentTime = Math.min(seconds, audio.duration);
+            } else {
+              audio.currentTime = seconds;
+            }
+          } catch (err) {
+            console.warn('set currentTime failed, will try after metadata', err);
+          }
+          const p = audio.play();
+          if (p && typeof p.catch === 'function') p.catch(()=>{});
+        }
+
+        if (isNaN(audio.duration) || audio.readyState < 1) {
+          const onMeta = function() {
+            audio.removeEventListener('loadedmetadata', onMeta);
+            setAndPlay();
+          };
+          audio.addEventListener('loadedmetadata', onMeta);
+          try { audio.load(); } catch(e) {}
+        } else {
+          setAndPlay();
+        }
+      });
     });
   });
 });
 </script>
+
  
 <body>
   <header>
@@ -223,11 +258,11 @@ document.querySelectorAll('.timestamps').forEach(list => {
         <li><button data-seconds="20">00:20</button> 【字母 J 的发音旅行】The pronunciation journey of the letter J.</li>
         <li><button data-seconds="49">00:49</button> 【字母 J 的历史来源】The historical origins of the letter J.</li>
         <li><button data-seconds="99">01:39</button> 【电影《乔乔的异想世界》里的 Jojo】Jojo in the film <i>Jojo Rabbit</i>.</li>
-        <li><button data-seconds="135">02:15</button> 【片头曲 甲壳虫乐队 I Want to Hold Your Hand 的德语版本】The German version of the Beatles' <i>I Want to Hold Your Han</i>d.</li>
-        <li><button data-seconds="192">03:12</button> 【片尾曲 大卫·鲍伊 The Heroes 的德语版本】David Bowie’s <i>Heroes</i> in German: <i>Helden</i>.</li>
+        <li><button data-seconds="135">02:15</button> 【片头曲 甲壳虫乐队 I Want to Hold Your Hand 的德语版本】The German version of the Beatles' <i>I Want to Hold Your Hand</i>.</li>
+        <li><button data-seconds="192">03:12</button> 【片尾曲 大卫·鲍伊 The Heroes 的德语版本】David Bowie's <i>Heroes</i> in German: <i>Helden</i>.</li>
         <li><button data-seconds="222">03:42</button> 【语言拓展理解力】Expanding understanding through languages.</li>
         <li><button data-seconds="268">04:28</button> 【尝试不同语言是个体摆脱自我牢笼的可能方式之一】Learning languages as a way beyond the self.</li>
-        <li><button data-seconds="333">05:33</button> 【里尔克诗句】Rilke’s quoted poem.</li>
+        <li><button data-seconds="333">05:33</button> 【里尔克诗句】Rilke's quoted poem.</li>
         <li><button data-seconds="410">06:50</button> 【生命因其深重而飞升】Life, existence, and gravity.</li>
         <li><button data-seconds="429">07:09</button> 【结尾】Closing — farewell in Greek.</li>
         <li><button data-seconds="444">07:24</button> 【彩蛋】Helden – ukulele fragment.</li>
