@@ -64,7 +64,7 @@ body {
   }
 
   .footnotes {
-  margin-top: 2em;
+  margin-top: 2.5em;  /* 原来 2em，稍大一些 */
   font-size: 0.9em;
   color: #555;
   border-top: 1px solid #ddd;
@@ -72,7 +72,7 @@ body {
   }
 
   .footnotes h3 {
-  font-size: 1rem;
+  font-size: 1.2rem;  /* 加大与上文间距 */
   margin-bottom: 0.8em;
   color: #333;
   }
@@ -98,11 +98,11 @@ body {
   margin-left: 0.5em;
   font-size: 0.85em;
   text-decoration: none;
-  color: #3366cc;
+  color: #888;  /* 灰色，不突兀 */
   }
   .footnote-back:hover,
   .footnote-ref:hover {
-  text-decoration: underline;
+  color: #555;   /* 悬停时稍微深一点 */
   }
 
   .back-link {
