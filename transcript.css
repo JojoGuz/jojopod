@@ -64,18 +64,54 @@ body {
   }
 
   .footnotes {
-    margin-top: 2em;
-    font-size: 0.9em;
-    color: #666;
+  margin-top: 2em;
+  font-size: 0.9em;
+  color: #555;
+  border-top: 1px solid #ddd;
+  padding-top: 1em;
+  }
+
+  .footnotes h3 {
+  font-size: 1rem;
+  margin-bottom: 0.8em;
+  color: #333;
+  }
+
+  .footnotes ol {
+  padding-left: 1.2em;
+  margin: 0;
+  }
+
+  .footnotes li {
+  margin-bottom: 0.8em;
+  line-height: 1.5;
+  }
+
+  .footnote-ref {
+  text-decoration: none;
+  font-size: 0.85em;
+  vertical-align: super;
+  color: #3366cc;
+  }
+
+  .footnote-back {
+  margin-left: 0.5em;
+  font-size: 0.85em;
+  text-decoration: none;
+  color: #3366cc;
+  }
+  .footnote-back:hover,
+  .footnote-ref:hover {
+  text-decoration: underline;
   }
 
   .back-link {
     margin-top: 2em;
     text-align: center;
-  }
+   }
 
   .back-link a {
     text-decoration: none;
     color: #3366cc;
     font-weight: bold;
-  }
+   }
