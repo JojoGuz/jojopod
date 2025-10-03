@@ -105,6 +105,20 @@ body {
   color: #555;   /* 悬停时稍微深一点 */
   }
 
+/* === Credits 素材说明 === */
+  .credits {
+  font-size: 0.8em;
+  color: #888;
+  text-align: center;
+  font-style: italic;
+  margin-top: 1.2em;
+  }
+  .credits p {
+  margin: 0;
+  }
+
+/* === 返回主页 & 版权信息 (Footer) === */
+
   .page-footer {
   margin-top: 3em;
   padding-top: 1.5em;
@@ -132,25 +146,16 @@ body {
   color: #224488;
 }
 
-.page-footer .credits {
-  font-size: 0.8em;
-  color: #888;
-}
-
-.page-footer .credits p {
-  margin: 0;
-  font-style: italic; /* 可选，增加区分感 */
-}
-
 .page-footer .site-info {
   margin-top: 1.2em;
   font-size: 0.8em;
   color: #777;
 }
 .page-footer .site-info a {
-  color: #3366cc;
+  color: #468189;
   text-decoration: none;
 }
 .page-footer .site-info a:hover {
   text-decoration: underline;
+  color: #2f7a7b; /* 悬停时加深，偏墨绿蓝 */
 }
