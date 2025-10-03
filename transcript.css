@@ -63,6 +63,7 @@ body {
   font-family: monospace;    /* 等宽字体，保持对齐 */
   }
 
+/* === Footnotes / Credits (reference layer) === */
   .footnotes {
   margin-top: 2.5em;  /* 原来 2em，稍大一些 */
   font-size: 0.9em;
@@ -96,7 +97,7 @@ body {
 
   .footnote-back {
   margin-left: 0.5em;
-  font-size: 0.85em;
+  font-size: 1em; /* 符号略大些 */
   text-decoration: none;
   color: #888;  /* 灰色，不突兀 */
   }
@@ -105,7 +106,7 @@ body {
   color: #555;   /* 悬停时稍微深一点 */
   }
 
-/* === Credits 素材说明 === */
+/* === Credits 素材说明 small, slightly muted=== */
   .credits {
   font-size: 0.8em;
   color: #888;
@@ -134,7 +135,7 @@ body {
 
 .page-footer .back-link a {
   text-decoration: none;
-  color: #468189;
+  color: #468189;  /* 你的青蓝色 */
   font-weight: normal;
   padding: 0.3em 0.6em;
   border-radius: 4px;
@@ -158,4 +159,8 @@ body {
 .page-footer .site-info a:hover {
   text-decoration: underline;
   color: #2f7a7b; /* 悬停时加深，偏墨绿蓝 */
+}
+@media (max-width: 520px) {
+  .credits, .page-footer .site-info { font-size: 0.9em; }
+  .page-footer .back-link a { display: inline-block; padding: 0.35em 0.8em; }
 }
