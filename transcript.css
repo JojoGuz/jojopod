@@ -97,13 +97,14 @@ body {
 
   .footnote-back {
   margin-left: 0.5em;
-  font-size: 1em; /* 符号略大些 */
+  font-size: 1.2rem;  /* 改成 rem，相对于根字体，不会跟着脚注缩小 */
   text-decoration: none;
   color: #888;  /* 灰色，不突兀 */
   }
   .footnote-back:hover,
   .footnote-ref:hover {
   color: #555;   /* 悬停时稍微深一点 */
+  line-height: 1;     /* 避免符号上下位置怪异 */
   }
 
 /* === Credits 素材说明 small, slightly muted=== */
@@ -163,4 +164,7 @@ body {
 @media (max-width: 520px) {
   .credits, .page-footer .site-info { font-size: 0.9em; }
   .page-footer .back-link a { display: inline-block; padding: 0.35em 0.8em; }
+  .footnote-back {
+    font-size: 1.4rem; /* 手机上再大一点 */
+  }
 }
