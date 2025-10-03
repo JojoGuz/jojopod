@@ -105,13 +105,52 @@ body {
   color: #555;   /* 悬停时稍微深一点 */
   }
 
-  .back-link {
-    margin-top: 2em;
-    text-align: center;
-   }
+  .page-footer {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+}
 
-  .back-link a {
-    text-decoration: none;
-    color: #3366cc;
-    font-weight: bold;
-   }
+.page-footer .back-link {
+  margin-bottom: 0.8em;
+}
+
+.page-footer .back-link a {
+  text-decoration: none;
+  color: #3366cc;
+  font-weight: normal;
+  padding: 0.3em 0.6em;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.page-footer .back-link a:hover {
+  background: #f0f0f0;
+  color: #224488;
+}
+
+.page-footer .credits {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.page-footer .credits p {
+  margin: 0;
+  font-style: italic; /* 可选，增加区分感 */
+}
+
+.page-footer .site-info {
+  margin-top: 1.2em;
+  font-size: 0.8em;
+  color: #777;
+}
+.page-footer .site-info a {
+  color: #3366cc;
+  text-decoration: none;
+}
+.page-footer .site-info a:hover {
+  text-decoration: underline;
+}
