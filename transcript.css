@@ -109,7 +109,7 @@ body {
   .credits {
   font-size: 0.8em;
   color: #888;
-  text-align: center;
+  text-align: nomal;
   font-style: italic;
   margin-top: 1.2em;
   }
