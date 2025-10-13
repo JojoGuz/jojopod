@@ -75,6 +75,25 @@ body {
   margin-top: 0.4em;
   }
 
+/* 引用型段落：old-paper 背景版 */
+.cn p.quote,
+.en p.quote {
+  background-color: #f9f7f1; /* 柔和米色 */
+  border-radius: 6px;
+  padding: 0.8em 1em;
+  margin: 0.8em 0;
+  font-style: italic;
+  color: #555;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08) inset;
+}
+
+/* 英文版稍微深一点，区分层次 */
+.en p.quote {
+  background-color: #f7f5ed;
+  color: #666;
+}
+
+
 /* === 乐谱部分 === */
   pre, code {
   background: #f4f4f4;       /* 背景颜色，浅灰色，突出歌词块 */
