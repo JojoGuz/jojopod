@@ -54,7 +54,28 @@ body {
     border-left: 3px solid #ccc;
     font-style: italic;
   }
+  /* 顶部插图容器 */
+  .image-top {
+  text-align: center;
+  margin: 1.2em 0;
+  }
 
+ /* 插图本身样式 */
+  .image-top img {
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+ /* 图片下方说明文字 */
+  .image-top p {
+  font-size: 0.85em;
+  color: #777;
+  font-style: italic;
+  margin-top: 0.4em;
+  }
+
+/* === 乐谱部分 === */
   pre, code {
   background: #f4f4f4;       /* 背景颜色，浅灰色，突出歌词块 */
   padding: 0.5rem;           /* 内边距，文字不贴边 */
