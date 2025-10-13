@@ -85,14 +85,21 @@ body {
   font-style: italic;
   color: #555;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08) inset;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 英文版稍微深一点，区分层次 */
+/* 英文版稍深一点 */
 .en p.quote {
   background-color: #f7f5ed;
   color: #666;
 }
 
+/* hover 时：背景略亮，阴影更柔和 */
+.cn p.quote:hover,
+.en p.quote:hover {
+  background-color: #faf9f5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05) inset;
+}
 
 /* === 乐谱部分 === */
   pre, code {
