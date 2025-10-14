@@ -82,7 +82,7 @@ body {
   border-radius: 6px;
   padding: 0.8em 1em;
   margin: 0.8em 0;
-  font-style: italic;
+/*  font-style: italic; 取消斜体*/
   color: #555;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08) inset;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
