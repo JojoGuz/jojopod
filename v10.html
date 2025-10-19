@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Jojo’s Pod — Works (responsive grid masonry)</title>
+<style>
+  :root{
+    --bg:#f7f5f2;
+    --accent:#144055;
+    --muted:#666;
+    --gap:18px;          /* grid gap */
+    --row-h:8px;         /* 基准行高（像素），JS 会用它来计算跨行）*/
+    --min-col:240px;     /* 每列最小宽度（可调）*/
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter, "Noto Sans SC", system-ui; background:var(--bg); color:#222;}
+  header{padding:20px; display:flex; align-items:center; gap:16px; border-bottom:1px solid rgba(0,0,0,0.04);}
+  .logo{font-weight:700;color:var(--accent)}
+  .hero{max-width:1200px;margin:18px auto;padding:10px 20px}
+  .hero h1{margin:0;color:var(--accent)}
+  .controls{max-width:1200px;margin:8px auto;padding:8px 20px}
+  .filters{display:flex;gap:10px;flex-wrap:wrap}
+  .filters button{padding:8px 12px;border-radius:999px;border:1px solid rgba(0,0,0,0.07);background:#fff;cursor:pointer;color:var(--muted)}
+  .filters button.active{color:var(--accent);border-color:var(--accent);font-weight:600}
+
+  /* ========== Grid Masonry (responsive columns) ========== */
+  .masonry-wrap{max-width:1400px;margin:0 auto;padding:0 20px 80px}
+  .masonry{
+    display:grid;
+    gap: var(--gap);
+    /* 自动列数：每列至少 --min-col，最多占剩余空间 */
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-col), 1fr));
+    /* 基准行高（单位 px），JS 用此值配合 gap 计算 rowSpan */
+    grid-auto-rows: calc(var(--row-h) * 1px);
+  }
+
+  .card{
+    background:#fff;border-radius:12px;overflow:hidden;
+    box-shadow:0 6px 18px rgba(15,43,61,0.04);
+    border:1px solid rgba(0,0,0,0.03);
+    transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(15,43,61,0.09);border-color:rgba(15,43,61,0.06)}
+  .thumb{display:block;width:100%;height:auto;object-fit:cover}
+  .meta{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+  h3{margin:0;padding:0 12px 8px;color:var(--accent);font-size:16px}
+  p{margin:0;padding:0 12px 16px;color:#333;font-size:14px;line-height:1.45}
+
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;color:#fff}
+  .pod{background:#2b6fa3}
+  .print{background:#b56a45}
+  .paint{background:#4a8a5e}
+
+  .hidden{display:none !important}
+
+  footer{padding:36px 20px;text-align:center;color:var(--muted)}
+  @media (max-width:700px){ :root{--min-col:160px} } /* 单列阈值更小 */
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Jojo’s Pod</div>
+  <nav style="margin-left:auto"><a href="#" style="color:var(--muted);text-decoration:none">About</a></nav>
+</header>
+
+<section class="hero">
+  <h1>Jojo’s Works — sound · print · painting</h1>
+  <p style="color:var(--muted);margin-top:6px">Three rhythms of one inquiry.</p>
+</section>
+
+<div class="controls">
+  <div class="filters" role="tablist" aria-label="filter">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="pod">Podcast</button>
+    <button class="filter-btn" data-filter="print">Printworks</button>
+    <button class="filter-btn" data-filter="paint">Paintings</button>
+  </div>
+</div>
+
+<div class="masonry-wrap">
+  <div class="masonry" id="masonry">
+    <!-- 示例卡片：类名同时含类别 pod/print/paint -->
+    <article class="card pod">
+      <img class="thumb" src="https://picsum.photos/seed/ep6/800/800" alt="Ep6 Spiral">
+      <div class="meta"><span class="badge pod">Podcast</span><span>Ep.6</span></div>
+      <h3>Spiral to the Universe ~ 和弦陀螺</h3>
+      <p>一段短小的音像实验：从五度链到对数螺线，轻轻旋转。</p>
+    </article>
+
+    <article class="card pod">
+      <img class="thumb" src="https://picsum.photos/seed/ep5/700/500" alt="Ep5">
+      <div class="meta"><span class="badge pod">Podcast</span><span>Ep.5</span></div>
+      <h3>从薛定谔到一块橡皮章</h3>
+      <p>关于物理、手作与记忆的小段思考。</p>
+    </article>
+
+    <article class="card print">
+      <img class="thumb" src="https://picsum.photos/seed/print1/600/900" alt="Print1">
+      <div class="meta"><span class="badge print">Print</span><span>Print 01</span></div>
+      <h3>铭记 · θεὸν περιφέρεις</h3>
+      <p>书签与木刻的小辑，纪念性的图像小物。</p>
+    </article>
+
+    <article class="card paint">
+      <img class="thumb" src="https://picsum.photos/seed/paint1/900/700" alt="Paint1">
+      <div class="meta"><span class="badge paint">Painting</span><span>Work A</span></div>
+      <h3>二次生长 · 再生的姿态</h3>
+      <p>亚麻布上的小画，关于时间与复苏。</p>
+    </article>
+
+    <!-- 可继续添加更多卡片 -->
+  </div>
+</div>
+
+<footer>© Jojo’s Pod — sound · print · painting</footer>
+
+<script>
+/* ---------- 帮助函数：把 css 数值转成 px 数字 ---------- */
+function pxToNumber(val){
+  if(!val) return 0;
+  return parseFloat(val.replace('px','')) || 0;
+}
+
+/* ---------- 计算并设置每个卡片的 grid-row-end ---------- */
+function layoutMasonry(){
+  const grid = document.getElementById('masonry');
+  if(!grid) return;
+  const rowHeight = pxToNumber(getComputedStyle(document.documentElement).getPropertyValue('--row-h'));
+  const gap = pxToNumber(getComputedStyle(grid).getPropertyValue('gap'));
+  const items = Array.from(grid.querySelectorAll('.card')).filter(i=>!i.classList.contains('hidden'));
+
+  items.forEach(item=>{
+    // 清理前设置，避免旧值影响测量
+    item.style.gridRowEnd = null;
+  });
+
+  // 由于图片可能正在加载，强制一次 reflow 后测量
+  items.forEach(item=>{
+    const itemHeight = item.getBoundingClientRect().height;
+    // 计算（包含 gap）要跨几行：ceil( (height + gap) / (rowHeight + gap) )
+    const span = Math.ceil( (itemHeight + gap) / (rowHeight + gap) );
+    item.style.gridRowEnd = 'span ' + span;
+  });
+}
+
+/* ---------- 等图片加载完再布局 ---------- */
+function imagesLoadedPromise(container){
+  const imgs = Array.from(container.querySelectorAll('img'));
+  if(imgs.length === 0) return Promise.resolve();
+  return Promise.all(imgs.map(img=>{
+    if(img.complete) return Promise.resolve();
+    return new Promise(res => { img.addEventListener('load', res); img.addEventListener('error', res); });
+  }));
+}
+
+/* ---------- 初始化布局与事件 ---------- */
+function initMasonry(){
+  const grid = document.getElementById('masonry');
+  imagesLoadedPromise(grid).then(()=>{
+    layoutMasonry();
+    // 小延迟再确保 font/render 完成
+    setTimeout(layoutMasonry, 120);
+  });
+
+  let rt;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(rt);
+    rt = setTimeout(layoutMasonry, 140);
+  });
+}
+
+/* ---------- 过滤逻辑（按钮） ---------- */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.getAttribute('data-filter');
+    const items = document.querySelectorAll('.masonry .card');
+    items.forEach(it=>{
+      if(f === 'all') it.classList.remove('hidden');
+      else {
+        if(it.classList.contains(f)) it.classList.remove('hidden');
+        else it.classList.add('hidden');
+      }
+    });
+    // 重新布局（给 DOM 一点时间）
+    setTimeout(layoutMasonry, 80);
+  });
+});
+
+/* 启动 */
+window.addEventListener('load', initMasonry);
+</script>
+
+</body>
+</html>
