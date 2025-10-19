@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jojo’s Works</title>
+
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f9f8f6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* --- 顶部分类按钮 --- */
+header {
+  text-align: center;
+  padding: 2em 1em 1em;
+}
+header h1 {
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+}
+.filters button {
+  background: none;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 0.5em 1.2em;
+  margin: 0.3em;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.filters button.active, .filters button:hover {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* --- 瀑布流布局 --- */
+.grid {
+  column-count: 3;
+  column-gap: 1em;
+  padding: 1em;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 1000px) {
+  .grid { column-count: 4; }
+}
+
+.grid-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1em;
+  break-inside: avoid;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.grid-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* --- 图片与文字 --- */
+.grid-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.caption {
+  padding: 0.8em 1em 1em;
+}
+.caption h3 {
+  margin: 0.3em 0;
+  font-size: 1em;
+}
+.caption p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* 类别标签色 */
+[data-category="podcast"] { border-top: 4px solid #8a7aff; }
+[data-category="print"] { border-top: 4px solid #c5a572; }
+[data-category="work"] { border-top: 4px solid #3a6f6f; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Jojo’s Creative Works</h1>
+  <div class="filters">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="podcast">Podcast</button>
+    <button data-filter="print">Prints</button>
+    <button data-filter="work">Works</button>
+  </div>
+</header>
+
+<main class="grid">
+  <!-- Podcast 方形 -->
+  <div class="grid-item" data-category="podcast">
+    <img src="podcast1.jpg" alt="Podcast cover">
+    <div class="caption">
+      <h3>Ep.6 | Spiral to the Universe</h3>
+      <p>音像实验系列：和弦陀螺。</p>
+    </div>
+  </div>
+
+  <div class="grid-item" data-category="podcast">
+    <img src="podcast2.jpg" alt="Podcast cover">
+    <div class="caption">
+      <h3>Ep.5 | 从薛定谔到一块橡皮章</h3>
+      <p>印品哲思系列。</p>
+    </div>
+  </div>
+
+  <!-- Prints 自然比例 -->
+  <div class="grid-item" data-category="print">
+    <img src="print1.jpg" alt="Print work">
+    <div class="caption">
+      <h3>Epictetus Series I</h3>
+      <p>亚麻布木刻印品 · 2025</p>
+    </div>
+  </div>
+
+  <div class="grid-item" data-category="print">
+    <img src="print2.jpg" alt="Print work">
+    <div class="caption">
+      <h3>神在你身上</h3>
+      <p>布面压印 · 手作版画。</p>
+    </div>
+  </div>
+
+  <!-- Works 画作 -->
+  <div class="grid-item" data-category="work">
+    <img src="painting1.jpg" alt="Painting">
+    <div class="caption">
+      <h3>二次生长 No.1</h3>
+      <p>亚麻布上丙烯 · 2025。</p>
+    </div>
+  </div>
+
+  <div class="grid-item" data-category="work">
+    <img src="painting2.jpg" alt="Painting">
+    <div class="caption">
+      <h3>流动的判断力</h3>
+      <p>抽象绘画 · 展览预告。</p>
+    </div>
+  </div>
+</main>
+
+<script>
+const buttons = document.querySelectorAll('.filters button');
+const items = document.querySelectorAll('.grid-item');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    items.forEach(item => {
+      item.style.display = (filter === 'all' || item.dataset.category === filter)
+        ? 'inline-block' : 'none';
+    });
+  });
+});
+</script>
+
+</body>
+</html>
