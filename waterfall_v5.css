@@ -1,0 +1,70 @@
+/* ===== Reset ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #f9f8f6;
+  color: #333;
+  line-height: 1.5;
+  padding: 2rem;
+}
+
+/* ===== Masonry Layout ===== */
+.masonry {
+  column-count: 4;         /* 桌面端默认4列 */
+  column-gap: 1.5rem;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  break-inside: avoid;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Hover Micro Animation ===== */
+.masonry-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* ===== Text ===== */
+.masonry-item h3 {
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .masonry {
+    column-count: 1;
+  }
+}
