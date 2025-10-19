@@ -15,6 +15,7 @@ body {
 
 /* ===== Masonry Layout ===== */
 .masonry {
+  display: flex;
   column-count: 4;         /* 桌面端默认4列 */
   column-gap: 1.5rem;
 }
