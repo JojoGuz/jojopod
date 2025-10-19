@@ -139,72 +139,171 @@
 <footer>© Jojo’s Pod — sound · print · painting</footer>
 
 <script>
-/* ========== 核心布局脚本：根据元素实际高度计算 grid-row 跨度 ========== */
-/* 说明：
-   - grid-auto-rows 在 CSS 中设置为 --row-height px（通过 calc）
-   - JS 读取元素高度（包括 margin/gap 的影响），计算需要占多少行： span = Math.ceil((height + gap) / (rowHeight + gap))
-   - 这样既能保持响应式列数（由 auto-fill 决定），又实现瀑布式视觉效果
+/* ---- 优化版：高效 Grid Masonry 布局 ----
+   替换你页面中原来的布局脚本。
+   要点：
+   - 只在图片加载时计算对应 card 的 row-span（避免一次性遍历所有）
+   - 批量 DOM 读写使用 rAF（requestAnimationFrame）
+   - 忽略 .hidden 元素，resize 防抖
+   - 建议：为 <img> 加上 loading="lazy" 与 width/height 或 srcset
 */
 
 const grid = document.getElementById('masonry');
-const baseRow = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--row-height')) || 8;
+if (!grid) {
+  console.warn('masonry container not found');
+} else {
+  // 从 CSS 读取基础行高与 gap（以 px 为单位）
+  const css = getComputedStyle(document.documentElement);
+  const baseRow = parseFloat(css.getPropertyValue('--row-height')) || 8;
+  let gridGap = parseFloat(getComputedStyle(grid).getPropertyValue('gap')) || 18;
 
-function layoutMasonry() {
-  const gap = parseFloat(getComputedStyle(grid).getPropertyValue('gap')) || 18;
-  const items = Array.from(grid.querySelectorAll('.card')).filter(i => !i.classList.contains('hidden'));
-  items.forEach(item => {
-    item.style.gridRowEnd = null; // reset
-    // getBoundingClientRect 用于精确高度（包含实际渲染高度）
-    const itemHeight = item.getBoundingClientRect().height;
-    // include one gap for safer spacing
-    const rowSpan = Math.ceil((itemHeight + gap) / (baseRow + gap));
-    item.style.gridRowEnd = 'span ' + rowSpan;
-  });
-}
+  // 用于批量写入的队列
+  const writeQueue = [];
+  let isWriting = false;
 
-// 等图片加载完再布局
-function imagesLoadedLayout() {
-  const imgs = grid.querySelectorAll('img');
-  let count = 0;
-  if (imgs.length === 0) { layoutMasonry(); return; }
-  imgs.forEach(img => {
-    if (img.complete) count++;
-    else {
-      img.addEventListener('load', () => { count++; if (count === imgs.length) layoutMasonry(); });
-      img.addEventListener('error', () => { count++; if (count === imgs.length) layoutMasonry(); });
+  function scheduleWrite(fn) {
+    writeQueue.push(fn);
+    if (!isWriting) {
+      isWriting = true;
+      requestAnimationFrame(() => {
+        let task;
+        while ((task = writeQueue.shift())) {
+          try { task(); } catch (e) { console.error(e); }
+        }
+        isWriting = false;
+      });
+    }
+  }
+
+  // 计算并设置单个 card 的 row span（只读高度一次）
+  function setItemRowSpan(item) {
+    // 忽略被隐藏的
+    if (item.classList.contains('hidden')) return;
+
+    // read: get height (this causes layout read)
+    const itemRect = item.getBoundingClientRect();
+    const itemHeight = Math.ceil(itemRect.height);
+
+    // compute span using row height + gap
+    const span = Math.max(1, Math.ceil((itemHeight + gridGap) / (baseRow + gridGap)));
+
+    // write: set style in rAF via scheduleWrite
+    scheduleWrite(() => {
+      item.style.gridRowEnd = 'span ' + span;
+    });
+  }
+
+  // 只处理当前视口附近的 items（少量优化）
+  function visibleItems() {
+    // use IntersectionObserver-like coarse filter using viewport height + buffer
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    const buffer = vh * 1.5; // 扩展范围，避免滚动中突然卡顿
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const topLimit = scrollTop - buffer;
+    const bottomLimit = scrollTop + vh + buffer;
+
+    return Array.from(grid.querySelectorAll('.card')).filter(it => {
+      if (it.classList.contains('hidden')) return false;
+      const r = it.getBoundingClientRect();
+      const top = r.top + scrollTop;
+      const bottom = top + r.height;
+      return !(bottom < topLimit || top > bottomLimit);
+    });
+  }
+
+  // 主入口：重新布局可见 items（逐个）
+  function relayoutVisible() {
+    // recompute gap each time (in case css changed)
+    gridGap = parseFloat(getComputedStyle(grid).getPropertyValue('gap')) || gridGap;
+    const items = visibleItems();
+    items.forEach(setItemRowSpan);
+  }
+
+  // 图片加载单张时触发对应 card 重算（最有效）
+  function bindImageListeners() {
+    const imgs = grid.querySelectorAll('img');
+    imgs.forEach(img => {
+      // if already handled, skip
+      if (img.__masonry_bound) return;
+      img.__masonry_bound = true;
+
+      // If image is complete, set its card now
+      if (img.complete) {
+        const parent = img.closest('.card');
+        if (parent) setItemRowSpan(parent);
+      } else {
+        img.addEventListener('load', (e) => {
+          const parent = img.closest('.card');
+          if (parent) setItemRowSpan(parent);
+        }, {passive: true});
+        img.addEventListener('error', () => {
+          const parent = img.closest('.card');
+          if (parent) setItemRowSpan(parent);
+        }, {passive: true});
+      }
+    });
+  }
+
+  // 过滤后需要重新计算（例如用户点击分类）
+  function relayoutAllVisibleAfterFilter() {
+    // small timeout to allow DOM display changes to take effect
+    setTimeout(relayoutVisible, 80);
+  }
+
+  // 初始化
+  function initMasonry() {
+    bindImageListeners();
+    // initial layout for items whose images already loaded
+    setTimeout(relayoutVisible, 80);
+  }
+
+  // 防抖 resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // recalc baseRow/gap in case CSS variables changed due to media queries
+      const computed = getComputedStyle(document.documentElement);
+      // update if changed
+      // baseRow = parseFloat(computed.getPropertyValue('--row-height')) || baseRow;
+      gridGap = parseFloat(getComputedStyle(grid).getPropertyValue('gap')) || gridGap;
+      relayoutVisible();
+    }, 150);
+  }, {passive: true});
+
+  // MutationObserver：当 DOM 中卡片增删、类名变化时（例如筛选）触发重布局
+  const mo = new MutationObserver((mutations) => {
+    let shouldRebind = false;
+    for (const m of mutations) {
+      if (m.type === 'childList' || m.type === 'attributes') shouldRebind = true;
+    }
+    if (shouldRebind) {
+      bindImageListeners();
+      relayoutAllVisibleAfterFilter();
     }
   });
-  if (count === imgs.length) layoutMasonry();
-}
+  mo.observe(grid, {childList: true, subtree: true, attributes: true, attributeFilter: ['class']});
 
-// 初次与重绘时布局
-window.addEventListener('load', () => {
-  imagesLoadedLayout();
-  // 字体或渲染微调后再一次布局
-  setTimeout(layoutMasonry, 250);
-});
-let t;
-window.addEventListener('resize', () => {
-  clearTimeout(t);
-  t = setTimeout(layoutMasonry, 120);
-});
-
-// 过滤逻辑
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.getAttribute('data-filter');
-    const items = grid.querySelectorAll('.card');
-    items.forEach(it => {
-      it.classList.remove('hidden');
-      if (f !== 'all' && !it.classList.contains(f)) it.classList.add('hidden');
+  // Optional: IntersectionObserver 仅对进入视口的元素做动画或再次微调
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(ent => {
+      if (ent.isIntersecting) {
+        const card = ent.target;
+        card.classList.add('in-viewport');
+        // layout this card for better alignment
+        setItemRowSpan(card);
+        io.unobserve(card); // only once
+      }
     });
-    // 重新布局（小延迟让 display 生效）
-    setTimeout(() => { imagesLoadedLayout(); }, 80);
+  }, { root: null, rootMargin: '200px 0px' });
+
+  // observe each card (for animation + late layout)
+  grid.querySelectorAll('.card').forEach(card => {
+    io.observe(card);
   });
-});
+
+  // run init
+  window.requestAnimationFrame(initMasonry);
+}
 </script>
 
-</body>
-</html>
