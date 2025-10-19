@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jojo's Pod — Works</title>
+<style>
+  :root{
+    --bg:#f6f1ea;
+    --text:#222;
+    --muted:#666;
+    --accent:#0f2b3d;
+    --card-pad:14px;
+  }
+  body{font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:var(--text);}
+  header{padding:28px 20px; display:flex; align-items:center; gap:18px;}
+  .logo{font-weight:700; font-size:20px; color:var(--accent);}
+  nav{margin-left:auto;}
+  nav a{color:var(--muted); text-decoration:none; margin-left:14px; font-size:14px;}
+  .hero{padding:0 20px 18px;}
+  .filters{padding:12px 20px; display:flex; gap:10px; align-items:center;}
+  .filters button{background:#fff;padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;}
+  .filters button.active{border-color:var(--accent); color:var(--accent); font-weight:600;}
+
+  /* 瀑布流容器 */
+  .masonry{
+    column-count:3;
+    column-gap:18px;
+    padding:20px;
+    max-width:1100px;
+    margin:0 auto 80px;
+  }
+  @media (max-width:900px){ .masonry{column-count:2;} }
+  @media (max-width:520px){ .masonry{column-count:1;} }
+
+  .card{
+    display:inline-block; /* must be inline-block for column layout */
+    width:100%;
+    margin:0 0 18px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 6px 18px rgba(15,43,61,0.04);
+    overflow:hidden;
+  }
+  .card .thumb{width:100%; display:block; height:0; padding-bottom:100%; position:relative; background:linear-gradient(135deg,#e9e4dd,#fff);}
+  .card .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .card .body{padding:var(--card-pad);}
+  .meta{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .title{font-size:16px; color:var(--accent); margin:0 0 8px; font-weight:600;}
+  .desc{font-size:14px; color:var(--text); margin:0 0 6px; line-height:1.35;}
+
+  /* category badges (small corner markers) */
+  .badge{display:inline-block;padding:4px 8px;border-radius:6px;font-size:12px;color:#fff}
+  .pod{background:#2b6fa3} .print{background:#b56a45} .paint{background:#4a8a5e}
+
+  /* hidden state */
+  .hidden{display:none !important;}
+  footer{padding:40px 20px; text-align:center; color:var(--muted); font-size:13px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Jojo’s Pod</div>
+  <nav>
+    <a href="#">About</a>
+    <a href="#">Works</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 style="margin:0;color:var(--accent)">Jojo’s Works</h1>
+  <p style="margin:8px 0 0;color:var(--muted)">sound, print, and painting — three rhythms of one inquiry.</p>
+</section>
+
+<section class="filters">
+  <button data-filter="all" class="active">All</button>
+  <button data-filter="pod">Podcast</button>
+  <button data-filter="print">Printworks</button>
+  <button data-filter="paint">Paintings</button>
+</section>
+
+<section class="masonry" id="masonry">
+  <!-- Card 模板：更换图片与文字 -->
+  <article class="card pod">
+    <div class="thumb"><img src="https://via.placeholder.com/800x800?text=Ep.4" alt="Ep4"></div>
+    <div class="body">
+      <div class="meta"><span class="badge pod">Podcast</span> · Ep.4</div>
+      <h3 class="title">印品哲思 | 从持续磨到一块橡皮章</h3>
+      <p class="desc">Sublimation of thought: from a rubber stamp to a pocketbook.</p>
+    </div>
+  </article>
+
+  <article class="card pod">
+    <div class="thumb"><img src="https://via.placeholder.com/800x800?text=Ep.6" alt="Ep6"></div>
+    <div class="body">
+      <div class="meta"><span class="badge pod">Podcast</span> · Ep.6</div>
+      <h3 class="title">Spiral to the Universe ~ 和弦陀螺</h3>
+      <p class="desc">一段短小的音像实验：从五度链到对数螺线，轻轻旋转。</p>
+    </div>
+  </article>
+
+  <article class="card print">
+    <div class="thumb"><img src="https://via.placeholder.com/800x1200?text=Print+1" alt="print1"></div>
+    <div class="body">
+      <div class="meta"><span class="badge print">Print</span></div>
+      <h3 class="title">价值所在</h3>
+      <p class="desc">存在 | 存在 — 木刻小版画。</p>
+    </div>
+  </article>
+
+  <article class="card paint">
+    <div class="thumb"><img src="https://via.placeholder.com/800x900?text=Painting" alt="painting"></div>
+    <div class="body">
+      <div class="meta"><span class="badge paint">Painting</span></div>
+      <h3 class="title">汗青（painting on linen）</h3>
+      <p class="desc">亚麻布上的短篇绘画。</p>
+    </div>
+  </article>
+
+  <!-- 可继续添加卡片 -->
+</section>
+
+<footer>© Jojo’s Pod — sound · print · painting</footer>
+
+<script>
+  // 简易筛选逻辑
+  const buttons = document.querySelectorAll('.filters button');
+  const cards = document.querySelectorAll('.masonry .card');
+
+  buttons.forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      buttons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.getAttribute('data-filter');
+      cards.forEach(c=>{
+        if(f === 'all'){ c.classList.remove('hidden'); return; }
+        if(c.classList.contains(f)) c.classList.remove('hidden');
+        else c.classList.add('hidden');
+      });
+    });
+  });
+</script>
+</body>
+</html>
