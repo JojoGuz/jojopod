@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jojo’s Works</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Inter", "Helvetica Neue", sans-serif;
+    background: #f8f7f4;
+    color: #222;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: #555;
+  }
+
+  /* Masonry-like layout using CSS grid */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 10px;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  }
+
+  .card img {
+    width: 100%;
+    display: block;
+    height: auto;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.4rem; }
+    .gallery { gap: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jojo’s Works</h1>
+  <p>Podcast · Print · Painting</p>
+</header>
+
+<main class="gallery">
+
+  <!-- Example: Ep.6 -->
+  <a href="ep6.html" class="card">
+    <img src="ep6_cover.jpg" alt="Spiral to the Universe cover">
+    <div class="card-content">
+      <div class="category">Podcast</div>
+      <div class="title">Ep.6 音像实验 | Spiral to the Universe ~ 和弦陀螺</div>
+      <div class="desc">
+        从和弦结构的感受出发，一次关于声音、宇宙与频率的思考实验。
+      </div>
+    </div>
+  </a>
+
+  <!-- Example: Print work -->
+  <a href="print_01.html" class="card">
+    <img src="bookmark01.jpg" alt="Linen bookmark print">
+    <div class="card-content">
+      <div class="category">Print</div>
+      <div class="title">箴言书签系列 No.1</div>
+      <div class="desc">“你随身带着神，却不自知。” 木刻印于亚麻布。</div>
+    </div>
+  </a>
+
+  <!-- Example: Painting work -->
+  <a href="painting_01.html" class="card">
+    <img src="painting01.jpg" alt="Abstract painting">
+    <div class="card-content">
+      <div class="category">Painting</div>
+      <div class="title">二次生长 · Fragment 03</div>
+      <div class="desc">半抽象作品，探索有机形态与时间节奏。</div>
+    </div>
+  </a>
+
+</main>
+</body>
+</html>
