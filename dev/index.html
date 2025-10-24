@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jojo's Pod | Ep.6 Spiral to the Universe</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans", sans-serif;
+      color: #f4f4f4;
+      background-color: #080c18;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 2rem 1rem 0.5rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      margin: 0.2rem 0 1.5rem;
+      font-size: 1.2rem;
+      color: #bcd9ff;
+      text-align: center;
+    }
+
+    #canvas-container {
+      position: relative;
+      width: 90%;
+      max-width: 720px;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    audio {
+      width: 90%;
+      max-width: 720px;
+      margin: 1rem 0;
+    }
+
+    section {
+      width: 90%;
+      max-width: 720px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    footer {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      padding: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>Jojo's Pod</header>
+  <h2>Ep.6 Spiral to the Universe</h2>
+
+  <!-- 动态配图 -->
+  <div id="canvas-container"></div>
+
+  <!-- 音频播放 -->
+  <audio controls>
+    <source src="your-episode6.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 内容简介 -->
+  <section>
+    <h3>Episode Summary</h3>
+    <p>
+      In this episode, we spiral into the idea of the expanding universe — both physically and mentally.
+      The rhythm of stars, the quiet breath of space, and the resonance between thought and infinity.
+    </p>
+  </section>
+
+  <!-- 时间戳 -->
+  <section>
+    <h3>Timestamps</h3>
+    <ul>
+      <li>00:00 — Opening & cosmic breathing</li>
+      <li>01:25 — On spirals and infinity</li>
+      <li>03:50 — The mind’s orbit</li>
+      <li>06:00 — Outro reflection</li>
+    </ul>
+  </section>
+
+  <footer>© Jojo 2025</footer>
+
+  <!-- 引入 p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script>
+    // ✨ breathing starlight universe ✨
+    let stars = [];
+
+    function setup() {
+      const container = document.getElementById('canvas-container');
+      const canvas = createCanvas(container.clientWidth, container.clientHeight);
+      canvas.parent(container);
+      noStroke();
+      for (let i = 0; i < 111; i++) {
+        stars.push(new Star(random(width), random(height)));
+      }
+    }
+
+    function draw() {
+      background(8, 12, 24, 60);
+      for (let s of stars) {
+        s.update();
+        s.display();
+      }
+    }
+
+    class Star {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.baseSize = random(1.5, 3.5);
+        this.phase = random(TWO_PI);
+        this.color = color(random(150, 240), random(200, 255), 255, 180);
+      }
+      update() {
+        this.phase += 0.035;
+        this.size = this.baseSize * (1 + 0.3 * sin(this.phase));
+        this.alpha = 150 + 80 * sin(this.phase);
+      }
+      display() {
+        for (let i = 0; i < 4; i++) {
+          let r = this.size * (1 + i * 0.5);
+          let a = this.alpha / (i + 1.5);
+          fill(red(this.color), green(this.color), blue(this.color), a);
+          ellipse(this.x, this.y, r, r);
+        }
+      }
+    }
+
+    function windowResized() {
+      const container = document.getElementById('canvas-container');
+      resizeCanvas(container.clientWidth, container.clientHeight);
+    }
+  </script>
+</body>
+</html>
