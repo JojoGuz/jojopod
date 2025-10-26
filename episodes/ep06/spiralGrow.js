@@ -107,3 +107,13 @@ function spiralGrowSketch(p) {
     p.redraw(); // ✅ 强制重绘最后一帧（即静止状态）
   };
 }
+
+/*🔧 如果你希望更稳一点（不重新生成螺旋）
+其实没必要在每次 resize 时都重新 spirals = []，那样每次滚动都“重来”。
+p.windowResized = function(){
+  const parent = p.canvas.parentNode;
+  size = parent.clientWidth;
+  p.resizeCanvas(size, size);
+  p.redraw(); // 只重绘，不清空数据
+};
+*/
