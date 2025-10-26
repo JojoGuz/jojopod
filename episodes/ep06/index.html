@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jojo's Pod | Ep.6 Spiral to the Universe</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans","Inter", sans-serif;
+      font-weight: 300;
+      color: #f4f4f4;
+      background-color: #080c18;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+      width: 100%;
+      text-align: center;
+      padding: 2rem 1rem 0.5rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    h2 {
+      font-family: "Noto Serif SC", "Source Han Serif SC", serif;
+      margin: 0.2rem 0 1.5rem;
+      font-size: 1.2rem;
+      color: #f4f4f4;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    h3 {font-weight: 400;}
+
+    #canvas-container {
+      position: relative;
+      width: 90%;
+      max-width: 720px;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    audio {
+      width: 90%;
+      max-width: 720px;
+      margin: 1rem 0;
+    }
+
+    section {
+      width: 90%;
+      max-width: 720px;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    footer {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      padding: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>Jojo's Pod</header>
+  <h2>Ep.6 Spiral to the Universe</h2>
+
+  <!-- 动态配图 -->
+  <div id="canvas-container"></div>
+
+
+  <!-- 音频播放 -->
+  <audio controls>
+    <source src="ep06_audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 内容简介 -->
+  <section>
+  <h3>Shownotes</h3>
+  
+  <p>
+    从和弦的微妙差异出发，追寻万物螺旋的节奏——一次在声音与宇宙间共振的思考之旅。</br>
+    A meditative journey from simple chords to the spiraling rhythm of the universe — where sound, ratio, and growth resonate as one.
+  </p>
+  <p>🎶 音像实验：<strong>Spiral to the Universe</strong> — made with p5.js</p>
+
+  
+</section>
+
+  <!-- 时间戳 -->
+  <section>
+ <!-- <h3>Timestamps</h3>-->
+  <ul>
+    <li><button data-seconds="0">00:00</button> — 【开场】</li>
+    <li><button data-seconds="22">00:22</button> — 【无解的大小和弦感觉差异】</li>
+    <li><button data-seconds="90">01:30</button> — 【单独的音与关系中的音】</li>
+    <li><button data-seconds="134">02:14</button> — 【向上展开的五度音序列】</li>
+    <li><button data-seconds="165">02:45</button> — 【频率的比例关系的发现与延伸】</li>
+    <li><button data-seconds="223">03:43</button> — 【万物的生长螺线】</li>
+    <li><button data-seconds="279">04:39</button> — 【结尾】</li>
+  </ul>
+  </section>
+
+  <!-- 阅读原文稿链接 -->
+  <section style="text-align:center; margin-bottom:2rem;">
+    <a href="ep06_transcript.html" 
+       style="color:#f4f4f4; text-decoration:none; font-weight:300;">
+      🐾 Read Transcript / 阅读全文稿
+    </a>
+  </section>
+
+  <footer>© Jojo 2025</footer>
+
+  <!-- 引入 p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script>
+    // ✨ breathing starlight universe ✨
+    let stars = [];
+
+    function setup() {
+      const container = document.getElementById('canvas-container');
+      const canvas = createCanvas(container.clientWidth, container.clientHeight);
+      canvas.parent(container);
+      noStroke();
+      for (let i = 0; i < 111; i++) {
+        stars.push(new Star(random(width), random(height)));
+      }
+    }
+
+    function draw() {
+      background(8, 12, 24, 60);
+      for (let s of stars) {
+        s.update();
+        s.display();
+      }
+    }
+
+    class Star {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.baseSize = random(1.5, 3.5);
+        this.phase = random(TWO_PI);
+        this.color = color(random(150, 240), random(200, 255), 255, 180);
+      }
+      update() {
+        this.phase += 0.035;
+        this.size = this.baseSize * (1 + 0.3 * sin(this.phase));
+        this.alpha = 150 + 80 * sin(this.phase);
+      }
+      display() {
+        for (let i = 0; i < 4; i++) {
+          let r = this.size * (1 + i * 0.5);
+          let a = this.alpha / (i + 1.5);
+          fill(red(this.color), green(this.color), blue(this.color), a);
+          ellipse(this.x, this.y, r, r);
+        }
+      }
+    }
+
+    function windowResized() {
+      const container = document.getElementById('canvas-container');
+      resizeCanvas(container.clientWidth, container.clientHeight);
+    }
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.querySelector("audio");
+    document.querySelectorAll("button[data-seconds]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const s = parseFloat(btn.dataset.seconds);
+        if (!isNaN(s)) {
+          audio.currentTime = s;
+          audio.play();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
