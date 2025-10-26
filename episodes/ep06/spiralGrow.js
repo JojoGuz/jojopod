@@ -103,5 +103,7 @@ function spiralGrowSketch(p) {
  //   p.background(225, 60, 18);
     p.background(10,15,30);
     p.noFill();
+
+    p.redraw(); // ✅ 强制重绘最后一帧（即静止状态）
   };
 }
