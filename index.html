@@ -25,6 +25,13 @@
       ),
        rgba(255, 255, 255, 0.01); /* 半透明白色 */
       background-blend-mode: overlay;
+       background-size: cover;  /* 确保背景填充 */
+       background-position: center; /* 保持中心对齐 */
+       height: 100vh;
+       overflow: hidden;  /* 防止背景渲染错误 */
+       margin: 0;
+
+
       font-family: 'Noto Sans', sans-serif;
       color: #333;
     }
