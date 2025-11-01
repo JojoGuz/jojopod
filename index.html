@@ -8,34 +8,16 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
   <style>
+    
     body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, #f7f9fb, #e8edf2);
-       /* 🎨 OKLCH 渐变背景 */
-      background: linear-gradient(
-       to bottom,
-       oklch(85% 0.17 70),   /* 金橙：亮，温暖 */
-       oklch(88% 0.14 180)   /* 金蓝绿：冷调，带一点金光 */
-      ),
-       rgba(255, 255, 255, 0.01); /* 半透明白色 */
-      background-blend-mode: overlay;
-       background-size: cover;  /* 确保背景填充 */
-       background-position: center; /* 保持中心对齐 */
-       background-attachment: scroll; /* 修改为滚动 */
-      
-       overflow: hidden;  /* 防止背景渲染错误 */
-      
-
-
-      font-family: 'Noto Sans', sans-serif;
-      color: #333;
+      transition: background 1s ease;
     }
 
     /* 🫧 p5 canvas 区域 */
