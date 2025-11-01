@@ -132,6 +132,20 @@
 
       t += 0.02;
     }
+
+     function updateBackground() {
+      // 动态计算颜色，利用t的变化产生渐变
+      let color1 = `oklch(85% 0.14 ${70 + Math.sin(t * 0.2) * 50})`;
+      let color2 = `oklch(85% 0.14 ${210 + Math.cos(t * 0.5) * 40})`;
+
+      // 更新背景渐变
+      document.body.style.background = `linear-gradient(to bottom, ${color1}, ${color2})`;
+
+      // 增加时间，达到不断变化的效果
+      t += 0.01;
+    }
+
+    setInterval(updateBackground, 30); // 每30ms更新一次背景
   </script>
 </body>
 </html>
