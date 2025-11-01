@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jojo's Pod - 众豆的豆</title>
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script src="episodes/ep06/spiralGrow.js"></script>
+<script src="assets/js/main.js"></script> 
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Noto Serif SC', "Source Han Serif SC", serif;
+    background-color: #faf8f5;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    margin: 2rem 0 1rem;
+  }
+
+  h1 {
+    font-family: 'Noto Serif SC', "Source Han Serif SC", serif;
+    font-weight: 500;
+    font-size: 2.2rem;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.2rem;
+  }
+
+  nav {
+    margin-top: 1rem;
+  }
+  nav button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    margin: 0 0.6rem;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s ease, border-bottom 0.2s ease;
+    border-bottom: 2px solid transparent;
+  }
+  nav button.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+  }
+
+  main.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    max-width: 1000px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+  }
+
+  .card {
+    background: #f9f9f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    padding: 0.6rem;
+    text-align: center;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+  }
+
+  a.card {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* 确保表现与 div 一致 */
+  }
+
+  a.card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card.hide {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .frame {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+  }
+
+  .frame img, .frame canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .title {
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    color: #444;
+  }
+
+  @media (max-width: 600px) {
+   .title { font-size: 1.1rem; }
+  }
+
+  footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  font-size: 0.8rem;
+  color: #777;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  background-color: #faf8f5;
+}
+
+footer a {
+  color: #555;
+  text-decoration: none;
+  margin: 0 0.3rem;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #000;
+}
+
+footer .footer-line {
+  margin: 0.5rem 0;
+  font-family: 'Noto Serif SC', 'Playfair Display', serif;
+}
+
+footer .footer-links {
+  margin: 0.3rem 0 0;
+  font-family: 'Noto Serif SC', serif;
+}
+
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .gallery { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Jojo's Pod</h1>
+  <p class="subtitle">声音 小画 文字</p>
+  <nav>
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="podcast">Podcast</button>
+<!--<button data-filter="print">Print</button>
+    <button data-filter="p5-playground">About</button> 下一期才会用到-->
+  </nav>
+</header>
+
+<main class="gallery">
+
+  <a class="card" data-type="podcast" href="episodes/ep06/index.html">
+    <div class="frame"><div id="p5cover-ep6" style="width:100%;aspect-ratio:1/1;"></div></div>
+    <p class="title">Ep.6: 音像实验 |宇宙里的和弦陀螺</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep05/index.html">
+    <div class="frame"><img src="episodes/ep05/ep05_cover.jpg" alt=""></div>
+    <p class="title">Ep.5: 印品哲思 |从薛定谔到橡皮章</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep04/index.html">
+    <div class="frame"><img src="episodes/ep04/ep04_cover.jpg" alt=""></div>
+    <p class="title">Ep.4: 德语时刻 |Jojo 与 Yoyo</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep03/index.html">
+    <div class="frame"><img src="episodes/ep03/ep03_cover.jpg" alt=""></div>
+    <p class="title">Ep.3: 社会热点 |AI的日常与思考</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep02/index.html">
+    <div class="frame"><img src="episodes/ep02/ep02_cover.jpg" alt=""></div>
+    <p class="title">Ep.2: la durée réelle |七夕之后</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep01/index.html">
+    <div class="frame"><img src="episodes/ep01/ep01_cover.jpg" alt=""></div>
+    <p class="title">Ep.1: 动静之间 |Erde·Welt·the Cat</p>
+  </a>
+
+  <a class="card" data-type="podcast" href="episodes/ep00/index.html">
+    <div class="frame"><img src="episodes/ep00/ep00_cover.jpg" alt=""></div>
+    <p class="title">Ep.0: 先喵一期</p>
+  </a>
+
+</main>
+
+<script>
+  window.addEventListener('load', () => {
+    const target = document.querySelector('#p5cover-ep6');
+    if (target) new p5(spiralGrowSketch, target);
+  });
+</script>
+
+<footer>
+  <p class="footer-line">© 2025 众豆的豆 - Jojo's Pod | 自制播客 | 实验计划</p>
+  <p class="footer-links">
+    <a href="about.html">About</a>
+  <!--<span>·</span>
+    <a href="https://open.spotify.com/" target="_blank">Spotify</a>
+    <span>·</span>
+    <a href="mailto:jojo@example.com">Contact</a>-->  
+  </p>
+</footer>
+
+</body>
+</html>

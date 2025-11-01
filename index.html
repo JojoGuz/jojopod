@@ -1,230 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jojo's Pod - 众豆的豆</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jojo's Pod — Under Construction</title>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #f7f9fb, #e8edf2);
+       /* 🎨 OKLCH 渐变背景 */
+      background: linear-gradient(
+       to bottom,
+       oklch(85% 0.17 70),   /* 金橙：亮，温暖 */
+       oklch(88% 0.14 180)   /* 金蓝绿：冷调，带一点金光 */
+      ),
+       rgba(255, 255, 255, 0.01); /* 半透明白色 */
+      background-blend-mode: overlay;
+      font-family: 'Noto Sans', sans-serif;
+      color: #333;
+    }
 
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    /* 🫧 p5 canvas 区域 */
+    .canvas-wrapper {
+      width: 500px;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      border-radius: 16px;
+      overflow: hidden;
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
-<script src="episodes/ep06/spiralGrow.js"></script>
-<script src="assets/js/main.js"></script> 
+    @font-face {
+      font-family: 'Flavors';
+      src: url('assets/fonts/Flavors-Regular.woff2') format('woff2'),
+           url('assets/fonts/Flavors-Regular.ttf') format('truetype');    
+    }
 
-<style>
-  body {
-    margin: 0;
-    font-family: 'Noto Serif SC', "Source Han Serif SC", serif;
-    background-color: #faf8f5;
-    color: #333;
-  }
+    @font-face {
+      font-family: 'Monofett';
+      src: url('assets/fonts/Monofett-Regular.woff2') format('woff2'),
+           url('assets/fonts/Monofett-Regular.ttf') format('truetype');    
+    }
 
-  header {
-    text-align: center;
-    margin: 2rem 0 1rem;
-  }
+    @font-face {
+      font-family: 'NotoSansSC-Light';
+      src: url('assets/fonts/NotoSansSC-Light.woff2') format('woff2');
+    }
 
-  h1 {
-    font-family: 'Noto Serif SC', "Source Han Serif SC", serif;
-    font-weight: 500;
-    font-size: 2.2rem;
-    margin: 0;
-  }
+    h2 {
+      font-family: 'Flavors', cursive;
+      font-size: 3rem;
+      font-weight:400;
+      margin: 0.5rem 0.5rem;
+      letter-spacing: 0.03em;
+      color: oklch(35% 0.12 40);
+    }
 
-  .subtitle {
-    font-size: 0.75rem;
-    color: #666;
-    margin-top: 0.2rem;
-  }
+    .date {
+      font-family: 'Monofett', monospace;
+      font-size: 2rem;
+      font-weight:400;
+      margin-bottom: 0.5rem 0 1rem 0;
+      color: oklch(30% 0.13 210)
+    }
 
-  nav {
-    margin-top: 1rem;
-  }
-  nav button {
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: 0.9rem;
-    margin: 0 0.6rem;
-    cursor: pointer;
-    color: #555;
-    transition: color 0.2s ease, border-bottom 0.2s ease;
-    border-bottom: 2px solid transparent;
-  }
-  nav button.active {
-    color: #000;
-    border-bottom: 2px solid #000;
-  }
-
-  main.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.2rem;
-    max-width: 1000px;
-    margin: 2rem auto 4rem;
-    padding: 0 1rem;
-  }
-
-  .card {
-    background: #f9f9f7;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    padding: 0.6rem;
-    text-align: center;
-    transition: transform 0.2s ease, opacity 0.3s ease;
-  }
-
-  a.card {
-    text-decoration: none;
-    color: inherit;
-    display: block; /* 确保表现与 div 一致 */
-  }
-
-  a.card:hover {
-    transform: translateY(-4px);
-  }
-
-  .card.hide {
-    opacity: 0;
-    transform: scale(0.98);
-    pointer-events: none;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-  }
-
-  .frame {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    aspect-ratio: 1/1;
-  }
-
-  .frame img, .frame canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 6px;
-    display: block;
-  }
-
-  .title {
-    font-size: 0.85rem;
-    margin-top: 0.4rem;
-    color: #444;
-  }
-
-  @media (max-width: 600px) {
-   .title { font-size: 1.1rem; }
-  }
-
-  footer {
-  text-align: center;
-  padding: 2rem 1rem 3rem;
-  font-size: 0.8rem;
-  color: #777;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  background-color: #faf8f5;
-}
-
-footer a {
-  color: #555;
-  text-decoration: none;
-  margin: 0 0.3rem;
-  transition: color 0.2s ease;
-}
-
-footer a:hover {
-  color: #000;
-}
-
-footer .footer-line {
-  margin: 0.5rem 0;
-  font-family: 'Noto Serif SC', 'Playfair Display', serif;
-}
-
-footer .footer-links {
-  margin: 0.3rem 0 0;
-  font-family: 'Noto Serif SC', serif;
-}
-
-
-  @media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    .gallery { gap: 1rem; }
-  }
-</style>
+    footer {
+      font-family: 'Noto Sans SC' ;
+      font-size: 0.7rem;
+      opacity: 0.8;
+      color: oklch(25% 0.05 220);
+      margin: 7rem 0.5rem 0 0;
+      font-weight: 300;
+    }
+  </style>
 </head>
 <body>
+  <div class="canvas-wrapper" id="p5-holder"></div>
 
-<header>
-  <h1>Jojo's Pod</h1>
-  <p class="subtitle">声音 小画 文字</p>
-  <nav>
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="podcast">Podcast</button>
-<!--<button data-filter="print">Print</button>
-    <button data-filter="p5-playground">About</button> 下一期才会用到-->
-  </nav>
-</header>
+  <h2>Jojo Giggins sets out on her adventure...</h2>
+  <div class="date">2025.11.1</div>
 
-<main class="gallery">
+  <footer>&#169 Jojo's Pod 众豆的豆实验播客 改版进行中</footer>
 
-  <a class="card" data-type="podcast" href="episodes/ep06/index.html">
-    <div class="frame"><div id="p5cover-ep6" style="width:100%;aspect-ratio:1/1;"></div></div>
-    <p class="title">Ep.6: 音像实验 |宇宙里的和弦陀螺</p>
-  </a>
+  <script>
+    let t = 0;
 
-  <a class="card" data-type="podcast" href="episodes/ep05/index.html">
-    <div class="frame"><img src="episodes/ep05/ep05_cover.jpg" alt=""></div>
-    <p class="title">Ep.5: 印品哲思 |从薛定谔到橡皮章</p>
-  </a>
+    function setup() {
+      let cnv = createCanvas(500, 500);
+      cnv.parent("p5-holder");
+      // ⚙️ 设置透明背景
+      clear();
+      noFill();
+      stroke(80, 100, 150, 80);
+      strokeWeight(1.5);
+    }
 
-  <a class="card" data-type="podcast" href="episodes/ep04/index.html">
-    <div class="frame"><img src="episodes/ep04/ep04_cover.jpg" alt=""></div>
-    <p class="title">Ep.4: 德语时刻 |Jojo 与 Yoyo</p>
-  </a>
+    function draw() {
+      clear(); // 每帧清空（保持透明）
+      translate(width / 2, height / 2);
 
-  <a class="card" data-type="podcast" href="episodes/ep03/index.html">
-    <div class="frame"><img src="episodes/ep03/ep03_cover.jpg" alt=""></div>
-    <p class="title">Ep.3: 社会热点 |AI的日常与思考</p>
-  </a>
+      // 呼吸半径
+      let r = 150 + sin(t) * 50;
 
-  <a class="card" data-type="podcast" href="episodes/ep02/index.html">
-    <div class="frame"><img src="episodes/ep02/ep02_cover.jpg" alt=""></div>
-    <p class="title">Ep.2: la durée réelle |七夕之后</p>
-  </a>
+      beginShape();
+      for (let i = 0; i < TWO_PI; i += 0.05) {
+        let x = r * cos(i) + 20 * sin(3 * i + t);
+        let y = r * sin(i) + 20 * cos(2 * i - t);
+        vertex(x, y);
+      }
+      endShape(CLOSE);
 
-  <a class="card" data-type="podcast" href="episodes/ep01/index.html">
-    <div class="frame"><img src="episodes/ep01/ep01_cover.jpg" alt=""></div>
-    <p class="title">Ep.1: 动静之间 |Erde·Welt·the Cat</p>
-  </a>
-
-  <a class="card" data-type="podcast" href="episodes/ep00/index.html">
-    <div class="frame"><img src="episodes/ep00/ep00_cover.jpg" alt=""></div>
-    <p class="title">Ep.0: 先喵一期</p>
-  </a>
-
-</main>
-
-<script>
-  window.addEventListener('load', () => {
-    const target = document.querySelector('#p5cover-ep6');
-    if (target) new p5(spiralGrowSketch, target);
-  });
-</script>
-
-<footer>
-  <p class="footer-line">© 2025 众豆的豆 - Jojo's Pod | 自制播客 | 实验计划</p>
-  <p class="footer-links">
-    <a href="about.html">About</a>
-  <!--<span>·</span>
-    <a href="https://open.spotify.com/" target="_blank">Spotify</a>
-    <span>·</span>
-    <a href="mailto:jojo@example.com">Contact</a>-->  
-  </p>
-</footer>
-
+      t += 0.02;
+    }
+  </script>
 </body>
 </html>
