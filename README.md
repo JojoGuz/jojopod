@@ -1,5 +1,26 @@
 # Jojo's Pod · 播客站点源文件
 
+
+# Jojo’s Pod
+
+Podcast production repo.
+
+## Core theme
+“Flowing Judgment” — philosophy, perception, art, small thinking notes.
+
+## Content direction
+- short breath episodes (1–2 mins)
+- long reflection episodes (3–5 mins)
+- reading references + marginalia
+- AI dialogues as material — not replacement
+
+## Output
+audio + notes + web publication
+
+
+
+
+
 (以下内容由chatGPT整理提供 基本可靠:)
 
 欢迎来到「Jojo's Pod」播客的源代码仓库。  

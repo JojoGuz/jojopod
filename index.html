@@ -12,7 +12,7 @@
     body {
       margin: 0;
       padding: 0;
-      height: 110vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,8 +22,8 @@
 
     /* 🫧 p5 canvas 区域 */
     .canvas-wrapper {
-      width: 500px;
-      height: 500px;
+      width: 300px;
+      height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -45,8 +45,14 @@
     }
 
     @font-face {
-      font-family: 'NotoSansSC-Light';
-      src: url('assets/fonts/NotoSansSC-Light.woff2') format('woff2');
+      font-family: 'Roboto';
+      src: url('assets/fonts/Roboto-Regular.woff2') format('woff2'),
+           url('assets/fonts/Roboto-Regular.ttf') format('truetype');    
+    }
+
+    @font-face {
+      font-family: 'NotoSansSC-Medium';
+      src: url('assets/fonts/NotoSansSC-Medium.woff2') format('woff2');
     }
 
     h2 {
@@ -58,6 +64,19 @@
       color: oklch(35% 0.12 40);
     }
 
+    .ep-title {
+      font-family:'NotoSansSC-Medium', sans-serif;
+      font-size:1rem;
+      opacity:10.95;
+      max-width:280px;
+      text-align:center;
+      line-height:1.35;
+      margin-top:0.6rem;
+      margin-bottom: 1.5rem; /* 上下margin */
+      letter-spacing:0.07rem; 
+      color: oklch(30% 0.13 210)
+    }
+
     .date {
       font-family: 'Monofett', monospace;
       font-size: 2rem;
@@ -66,29 +85,46 @@
       color: oklch(30% 0.13 210)
     }
 
+
     footer {
-      font-family: 'Noto Sans SC' ;
-      font-size: 0.7rem;
+      font-family: 'Monofett', monospace;
+      font-size: 0.9rem;
       opacity: 0.8;
       color: oklch(25% 0.05 220);
       margin: 5rem 0.5rem 0 0;
-      font-weight: 300;
+      font-weight: 200;
     }
   </style>
 </head>
 <body>
   <div class="canvas-wrapper" id="p5-holder"></div>
 
-  <h2>Jojo Giggins sets out on her adventure...</h2>
-  <div class="date">2025.11.1</div>
 
-  <footer>&#169 Jojo's Pod 众豆的豆实验播客 改版进行中</footer>
+  <h2>Jojo Giggins sets out on her adventure...</h2>
+  <div class="date">2025.11.9</div>
+
+
+  <!-- 🎧 audio -->
+  <audio controls preload="metadata" style="margin:2.2rem 0 0 0;">
+    <source src="episodes/ep07/ep07_audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- ep07 title -->
+  <div class="ep-title">
+    Ep.07 生活瞬间 | 暖豆菠菜咖喱 <br>
+<!--Micro Life Moment with warm chickpea spinach curry-->    
+  </div>
+
+
+
+  <footer>&#169 Jojo's Pod — in slow redesign</footer>
 
   <script>
     let t = 0;
 
     function setup() {
-      let cnv = createCanvas(500, 500);
+      let cnv = createCanvas(300, 300);
       cnv.parent("p5-holder");
       // ⚙️ 设置透明背景
       clear();
@@ -102,10 +138,10 @@
       translate(width / 2, height / 2);
 
       // 呼吸半径
-      let r = 150 + sin(t) * 50;
+      let r = 100 + sin(t) * 30;
 
       beginShape();
-      for (let i = 0; i < TWO_PI; i += 0.05) {
+      for (let i = 0; i < TWO_PI; i += 0.03) {
         let x = r * cos(i) + 20 * sin(3 * i + t);
         let y = r * sin(i) + 20 * cos(2 * i - t);
         vertex(x, y);
