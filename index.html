@@ -141,12 +141,12 @@
       translate(width / 2, height / 2);
 
       // 呼吸半径
-      let r = 100 + sin(t) * 30;
+      let r = 95 + sin(t) * 30;
 
       beginShape();
       for (let i = 0; i < TWO_PI; i += 0.03) {
-        let x = r * cos(i) + 20 * sin(3 * i + t);
-        let y = r * sin(i) + 20 * cos(2 * i - t);
+        let x = r * cos(i) + 12 * sin(3 * i + t);
+        let y = r * sin(i) + 12 * cos(2 * i - t);
         vertex(x, y);
       }
       endShape(CLOSE);
