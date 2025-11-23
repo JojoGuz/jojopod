@@ -96,7 +96,7 @@ h3 {
   display: inline-block;
   margin-top: 1.8rem;
   margin-bottom: 0.6rem;
-  letter-spacing: 0.05rem;   /* 字间距只用于标题 而非正文 chatGPT这个笨蛋 */
+  letter-spacing: 0.03rem;   /* 字间距只用于标题 而非正文 chatGPT这个笨蛋 */
 }
 
 h4 {
@@ -257,6 +257,7 @@ audio {
   color: var(--link-button-text);
   margin-left: auto;        /* 自动占满左边空间，把按钮推到右侧 */
   width: fit-content;       /* 宽度刚好包住内容 */
+  margin-top: 1.5rem;
 }
 
 .transcript:hover {
