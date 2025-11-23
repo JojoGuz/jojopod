@@ -257,7 +257,7 @@ audio {
   color: var(--link-button-text);
   margin-left: auto;        /* 自动占满左边空间，把按钮推到右侧 */
   width: fit-content;       /* 宽度刚好包住内容 */
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .transcript:hover {
