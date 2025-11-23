@@ -76,6 +76,7 @@ h1 {
   font-family: var(--serif);
   font-size: 3rem;
   line-height: 1.3;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.02rem;
 }
@@ -119,7 +120,7 @@ h5 {
   display: block;
   margin-top: 0.1rem;
   margin-bottom: 1.5rem;
-  letter-spacing: 0.05rem;   
+  letter-spacing: 0.02rem;   
 }
 
 
