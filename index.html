@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jojo's Pod — Ep07</title>
+  <title>Jojo's Pod — Ep08</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
@@ -62,11 +62,36 @@
       margin: 0.5rem auto;
       text-align: center;
       letter-spacing: 0.03em;
-      color: oklch(33.42% 0.13357 12.324);
+      color: oklch(32.922% 0.13511 29.223);
       display:block;
       width: fit-content;
     }
 
+    .ep-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #E3D9CF9a;
+      color: #6b5a4a;
+      font-family: 'Flavors', cursive;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+      transition: all 0.25s ease;
+      margin: 1.5rem 0 0 0;
+    }
+
+    .ep-button:hover {
+      background: #bcd6d2;
+      transform: scale(1.06);
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+    }
+    
+    /*
     .ep-title {
       font-family:'NotoSansSC-Medium', sans-serif;
       font-size:1rem;
@@ -75,10 +100,10 @@
       text-align:center;
       line-height:1.35;
       margin-top:0.6rem;
-      margin-bottom: 1.5rem; /* 上下margin */
+      margin-bottom: 1.5rem;  上下margin 
       letter-spacing:0.07rem; 
       color: oklch(30.209% 0.07519 244.459)
-    }
+    }*/
 
     .date {
       font-family: 'Monofett', monospace;
@@ -107,17 +132,15 @@
   <div class="date">2025.11.9</div>
 
 
-  <!-- 🎧 audio -->
+  <!-- 🎧 audio 
   <audio controls preload="metadata" style="margin:2.2rem 0 0 0;">
     <source src="episodes/ep07/ep07_audio.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+  -->
 
-  <!-- ep07 title -->
-  <div class="ep-title">
-    Ep.07 生活瞬间 | 暖豆菠菜咖喱 <br>
-<!--Micro Life Moment with warm chickpea spinach curry-->    
-  </div>
+ <!-- 🟤 Ep08 button -->
+<a href="ep08.html" class="ep-button">Ep08</a>
 
 
 
