@@ -67,13 +67,22 @@
       width: fit-content;
     }
 
+
+
+    .ep-container {
+     display: flex;
+     flex-direction: row;
+     gap: 0.1rem;       /* 按钮之间的水平距离 */
+     margin-top: 1.5rem;
+}
     .ep-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      border-radius: 50px; /* instead of 50% */
+      
       background: #E3D9CF9a;
       color: #6b5a4a;
       font-family: 'Flavors', cursive;
@@ -82,8 +91,26 @@
       text-decoration: none;
       box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
       transition: all 0.25s ease;
-      margin: 1.5rem 0 0 0;
+     /* margin: 1.5rem 0 0 0;*/
     }
+
+   .tri-soft {
+      width: 150px;
+      height: 130px;
+      background: #E3D9CFcc;
+      color: #6b5a4a;
+      font-family: 'Flavors';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(
+        50% 0%,
+        100% 80%,
+        0% 80%
+      );
+      border-radius: 20px;
+    }
+
 
     .ep-button:hover {
       background: #bcd6d2;
@@ -129,10 +156,13 @@
 
 
   <h2>Jojo Giggins sets out on her adventure...</h2>
-  <div class="date">2025.11.23</div>
+  <div class="date">2025.12.07</div>
 
- <!-- 🟤 Ep08 button -->
-  <a href="ep08.html" class="ep-button">Ep08</a>
+ <!-- 🟤 Ep button -->
+  <div class="ep-container">
+    <a href="ep08.html" class="ep-button">Ep08</a>
+    <a href="ep09.html" class="ep-button tri-soft">Ep09</a>
+  </div>
 
 
   <footer>&#169 Jojo's Pod — in slow redesign</footer>
