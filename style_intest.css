@@ -28,6 +28,9 @@
   --link-button-text:#5A4A3C;
   --link-button-hover:#cacaa2;
 
+  --footnote-ref:#222;
+  --footnote-fef-hover:#cacaa2;
+
 
   --max-width: 900px;
 }
@@ -123,6 +126,17 @@ h5 {
   letter-spacing: 0.02rem;   
 }
 
+
+.footnote-ref {
+  text-decoration: none;      
+  color: var(--footnote-ref);          
+  font-weight: 500;           /* 可选：让脚注数字更稳一点 */
+}
+
+.footnote-ref:hover {
+  color: var(--footnote-ref-hover);                
+  text-decoration: none; 
+}
 
 .footnotes {
     
