@@ -69,7 +69,55 @@ body {
 .episode {
   max-width: var(--max-width);
   margin: auto;
-  padding: 2rem 1.6rem 4rem;
+  padding: 2rem 1.2rem 4rem;
+}
+
+/* ---- 标题区容器 ---- */
+.title-block {
+  position: relative;
+  margin-bottom: 2rem; /* 保留你原本 h5 下方的空间 */
+}
+
+/* ---- 日期 pill ---- */
+.ep-date {
+  position: absolute;
+  right: 0;          /* 靠右对齐 */
+  top: 0;            /* 与 h1 顶端对齐 */
+  transform: translateY(-10%); /* 微调，让 pill 与中文标题更自然对齐 */
+
+  font-size: 0.75rem;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 0.18em 0.6em;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: white; /* 推荐，避免重叠到文字时透明 */
+}
+
+/* 防止 pill挡住行距过高的 h1 */
+h1 {
+  padding-right: 4.5rem; /* 给 pill 留空间，不挤到标题 */
+}
+
+/* ---- 手机端：pill 移到英文标题下面 ---- */
+@media (max-width: 600px) {
+  .ep-date {
+    position: static;
+    transform: none;
+    margin-top: 0.1rem;
+    display: inline-block;
+  }
+
+  .title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  h1 {
+    padding-right: 0; /* 移动端不需要留空 */
+  }
 }
 
 
@@ -122,7 +170,7 @@ h5 {
   border-radius: 4px;
   display: block;
   margin-top: 0.1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   letter-spacing: 0.02rem;   
 }
 
