@@ -360,3 +360,7 @@ audio {
   font-size: 0.8rem;
   border-top: 1px solid #ddd;
 }
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
