@@ -24,12 +24,16 @@
 
   --accent-bg: #c8b8a679;
 
-  --link-button-bg:#C8B8A6;
+  --link-button-bg:#ffffff;
   --link-button-text:#5A4A3C;
   --link-button-hover:#cacaa2;
 
   --footnote-ref:#222;
   --footnote-fef-hover:#cacaa2;
+
+  --nav-text:#b40707;
+
+  --quote-background:#f7f7f7;
 
 
   --max-width: 900px;
@@ -58,7 +62,7 @@ body {
 .top-nav a {
   text-decoration: none;
   font-size: 1rem;
-  color: #b40707;
+  color: var(--nav-text);
   font-weight: 600;
   font-family: var(--sans);
 }
@@ -174,6 +178,17 @@ h5 {
   letter-spacing: 0.02rem;   
 }
 
+/*----引用----*/
+blockquote {
+  background: var(--quote-background);     /* 柔和背景色 */
+  padding: 0.8em 1.2em;    /* 内距让内容更呼吸 */
+  border-left: 4px solid #d0d0d0; /* 左侧竖线，增强引用感 */
+  margin: 1em 0;           /* 与上下正文保持距离 */
+  font-size: 0.9em;        /* 比正文略小一点 */
+  line-height: 1.6;        /* 更好的可读性 */
+ /* border-radius: 6px;       可选：柔和圆角 */
+}
+
 
 .footnote-ref {
   text-decoration: none;      
@@ -230,6 +245,10 @@ span.en {
   font-size: 0.95rem;
   line-height: 1.5;
   letter-spacing: 0;
+  font-style: oblique;
+}
+
+blockquote.en {
   font-style: oblique;
 }
 
@@ -303,23 +322,33 @@ audio {
 
 /* ---------- Transcript Link ---------- */
 
-.transcript {
-  background-color: var(--link-button-bg);
-  display: block;
-  padding: 0.4rem 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-decoration: none;
-  color: var(--link-button-text);
-  margin-left: auto;        /* 自动占满左边空间，把按钮推到右侧 */
-  width: fit-content;       /* 宽度刚好包住内容 */
+.transcript-wrapper {
+  display: flex;
+  justify-content: flex-end;  /* 将按钮推到右边 */
   margin-top: 2rem;
 }
 
-.transcript:hover {
-  background: var(--link-button-hover);
+.transcript-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  /* 这是重点：按钮色彩 */
+  background-color: var(--link-button-bg); /* 强调按钮行为 */
+  color: var(--link-button-text);
+  border: 1px solid var(--link-button-bg);
 }
 
+.transcript-pill:hover,
+.transcript-pill:focus {
+  background-color: var(--link-button-hover);
+  border-color: var(--link-button-hover);
+}
 
 /* ---------- Footer ---------- */
 
