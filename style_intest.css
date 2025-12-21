@@ -361,6 +361,8 @@ audio {
   border-top: 1px solid #ddd;
 }
 
+
+/*让移动端在点击链接时不再显示蓝色/高亮效果*/
 a {
   -webkit-tap-highlight-color: transparent;
 }
