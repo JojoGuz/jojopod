@@ -366,3 +366,49 @@ audio {
 a {
   -webkit-tap-highlight-color: transparent;
 }
+
+
+details {
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+  
+  padding: 0.3rem 0.5rem;
+ 
+}
+
+summary{
+  letter-spacing: 0.05rem;
+  padding: 0.3rem 0.6rem;
+  opacity: 0.95;
+  background: var(--accent-bg);
+  display: inline-block;
+  border-radius: 3px;
+
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary::marker {
+  content: "";
+}
+
+details[open] > summary {
+  opacity: 1;
+  color: var(--text-main);
+}
+
+summary {
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+details > summary:hover {
+  background: rgba(200, 184, 166, 0.55); /* 比 --accent-bg 稍实 */
+  opacity: 1;
+}

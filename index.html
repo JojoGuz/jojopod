@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jojo's Pod — Ep09</title>
+  <title>Jojo's Pod — Ep10</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
@@ -72,21 +72,23 @@
     .ep-container {
      display: flex;
      flex-direction: row;
-     gap: 0.1rem;       /* 按钮之间的水平距离 */
+     gap: 0.3rem;       /* 按钮之间的水平距离 */
      margin-top: 1.5rem;
-}
+    }
+
+    
     .ep-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100px;
-      height: 100px;
-      border-radius: 50px; /* instead of 50% */
+      width: 86px;
+      height: 86px;
+      border-radius: 43px; /* instead of 50% */
       
       background: #E3D9CF9a;
       color: #6b5a4a;
       font-family: 'Flavors', cursive;
-      font-size: 2rem;
+      font-size: 1.6rem;
       letter-spacing: 0.04em;
       text-decoration: none;
       box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
@@ -95,8 +97,8 @@
     }
 
    .tri-soft {
-      width: 150px;
-      height: 130px;
+      width: 110px;
+      height: 110px;
       background: #E3D9CFcc;
       color: #6b5a4a;
       font-family: 'Flavors';
@@ -108,15 +110,30 @@
         100% 80%,
         0% 80%
       );
-      border-radius: 20px;
+      border-radius: 10px;
     }
 
+    .square {
+      width: 81px;
+      height: 81px;
+      background: #E3D9CFcc;
+      color: #6b5a4a;
+      font-family: 'Flavors';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      margin-top: 5px; /* 👈 靠下一点 */
+      margin-left: 6px;
+    }
 
     .ep-button:hover {
       background: #bcd6d2;
       transform: scale(1.06);
       box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
     }
+
+
     
     /*
     .ep-title {
@@ -156,47 +173,118 @@
 
 
   <h2>Jojo Giggins sets out on her adventure...</h2>
-  <div class="date">2025.12.07</div>
+  <div class="date">2025.12.21</div>
 
  <!-- 🟤 Ep button -->
   <div class="ep-container">
     <a href="ep08.html" class="ep-button">Ep08</a>
     <a href="ep09.html" class="ep-button tri-soft">Ep09</a>
+    <a href="ep10.html" class="ep-button square">Ep10</a>
   </div>
 
 
   <footer>&#169 Jojo's Pod — in slow redesign</footer>
 
   <script>
-    let t = 0;
+     let t = 0;
+     let dots = [];
+    let lastSecond = -1;
 
-    function setup() {
-      let cnv = createCanvas(300, 300);
-      cnv.parent("p5-holder");
-      // ⚙️ 设置透明背景
-      clear();
-      noFill();
-      stroke(55, 88, 120, 120);
-      strokeWeight(1.5);
-    }
+  function setup() {
+    let cnv = createCanvas(300, 300);
+    cnv.parent("p5-holder");
+    angleMode(DEGREES);
 
-    function draw() {
-      clear(); // 每帧清空（保持透明）
-      translate(width / 2, height / 2);
+    clear();           // 透明背景
+    strokeCap(ROUND); // 指针更柔和
+  }
 
-      // 呼吸半径
-      let r = 95 + sin(t) * 30;
+  function draw() {
+    clear(); // 保持透明
+    translate(width / 2, height / 2);
+    rotate(-90);
 
-      beginShape();
-      for (let i = 0; i < TWO_PI; i += 0.03) {
-        let x = r * cos(i) + 12 * sin(3 * i + t);
-        let y = r * sin(i) + 12 * cos(2 * i - t);
-        vertex(x, y);
-      }
-      endShape(CLOSE);
+    let now = new Date();
+    let h = now.getHours();
+    let m = now.getMinutes();
+    let s = now.getSeconds();
+    let ms = now.getMilliseconds();
 
-      t += 0.02;
-    }
+    
+
+    // 统一色系（与主页一致）
+    let baseColor = color(55, 88, 120, 160);
+
+    // =====================
+    // Hour hand
+    // =====================
+    stroke(baseColor);
+    strokeWeight(5);
+    push();
+    rotate(map(h % 12 + m / 60, 0, 12, 0, 360));
+    line(0, 0, 48, 0);
+    pop();
+
+    // =====================
+    // Minute hand
+    // =====================
+    stroke(baseColor);
+    strokeWeight(3);
+    push();
+    rotate(map(m + s / 60, 0, 60, 0, 360));
+    line(0, 0, 72, 0);
+    pop();
+
+    // =====================
+    // Second hand（细 & 克制）
+    // =====================
+    stroke(55, 88, 120, 110);
+    strokeWeight(1.5);
+    push();
+    rotate(map(s, 0, 60, 0, 360));
+    line(0, 0, 90, 0);
+    pop();
+
+    // 中心小圆点（稳定锚点）
+    noStroke();
+    fill(55, 88, 120, 180);
+    circle(0, 0, 4);
+
+    t += 0.01;
+
+    // =====================
+// Breathing dots (per second)
+// =====================
+if (s !== lastSecond) {
+  dots.push({
+    angle: random(360),
+    radius: random(60, 90),
+    life: random(180, 300),  // 随机寿命
+    decay: random(1.2, 2.2),// 消失速度
+    size: random(2, 6.5)
+    
+  });
+  lastSecond = s;
+}
+
+for (let i = dots.length - 1; i >= 0; i--) {
+  let d = dots[i];
+
+  let x = d.radius * cos(d.angle);
+  let y = d.radius * sin(d.angle);
+
+  noStroke();
+  fill(55, 88, 120, d.life);
+  circle(x, y, d.size);
+
+  d.life -= d.decay;
+
+  if (d.life <= 0) {
+    dots.splice(i, 1);
+  }
+}
+
+  }
 
      function updateBackground() {
       // 动态计算颜色，利用t的变化产生渐变
