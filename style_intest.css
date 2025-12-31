@@ -412,3 +412,42 @@ details > summary:hover {
   background: rgba(200, 184, 166, 0.55); /* 比 --accent-bg 稍实 */
   opacity: 1;
 }
+
+
+/* --prints images--*/
+.print-gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.image-frame {
+  position: relative;
+  width: 60%;
+  max-width: 420px;   /* 关键：别太大 */
+}
+
+.image-frame img {
+  width: 100%;
+  display: none;
+}
+
+.image-frame img.active {
+  display: block;
+}
+
+/* 左右箭头 */
+.print-gallery .nav {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  line-height: 1;
+}
+
+.print-gallery .nav:hover {
+  opacity: 0.6;
+}
