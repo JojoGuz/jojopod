@@ -6,6 +6,8 @@
   <title>Jojo's Pod — Ep10</title>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="clock.js" defer></script>
+  <script src="background.js" defer></script>
 
   <style>
     
@@ -35,16 +37,19 @@
     @font-face {
       font-family: 'Flavors';
       src: url('assets/fonts/Flavors-Regular.woff2') format('woff2');    
+      font-display: swap;
     }
 
     @font-face {
       font-family: 'Monofett';
-      src: url('assets/fonts/Monofett-Regular.woff2') format('woff2');    
+      src: url('assets/fonts/Monofett-Regular.woff2') format('woff2');  
+      font-display: swap;  
     }
 
     @font-face {
       font-family: 'Roboto';
-      src: url('assets/fonts/Roboto-Regular.woff2') format('woff2');    
+      src: url('assets/fonts/Roboto-Regular.woff2') format('woff2'); 
+      font-display: swap;   
     }
 
     h2 {
@@ -86,7 +91,10 @@
       letter-spacing: 0.04em;
       text-decoration: none;
       box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
-      transition: all 0.25s ease;
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
      /* margin: 1.5rem 0 0 0;*/
       --hover-bg: #bcd6d2;
     }
@@ -198,126 +206,6 @@
 
   <footer>&#169 Jojo's Pod — in slow redesign</footer>
 
-  <script>
-     let t = 0;
-     let dots = [];
-    let lastSecond = -1;
-    let bgCounter = 0;
-
-  function setup() {
-    let cnv = createCanvas(300, 300);
-    cnv.parent("p5-holder");
-    angleMode(DEGREES);
-
-    clear();           // 透明背景
-    strokeCap(ROUND); // 指针更柔和
-  }
-
-  function draw() {
-    clear(); // 保持透明
-    translate(width / 2, height / 2);
-    rotate(-90);
-
-    let now = new Date();
-    let h = now.getHours();
-    let m = now.getMinutes();
-    let s = now.getSeconds();
-    let ms = now.getMilliseconds();
-
-    
-
-    // 统一色系（与主页一致）
-    let baseColor = color(55, 88, 120, 160);
-
-    // =====================
-    // Hour hand
-    // =====================
-    stroke(baseColor);
-    strokeWeight(5);
-    push();
-    rotate(map(h % 12 + m / 60, 0, 12, 0, 360));
-    line(0, 0, 48, 0);
-    pop();
-
-    // =====================
-    // Minute hand
-    // =====================
-    stroke(baseColor);
-    strokeWeight(3);
-    push();
-    rotate(map(m + s / 60, 0, 60, 0, 360));
-    line(0, 0, 72, 0);
-    pop();
-
-    // =====================
-    // Second hand（细 & 克制）
-    // =====================
-    stroke(55, 88, 120, 110);
-    strokeWeight(1.5);
-    push();
-    rotate(map(s, 0, 60, 0, 360));
-    line(0, 0, 90, 0);
-    pop();
-
-    // 中心小圆点（稳定锚点）
-    noStroke();
-    fill(55, 88, 120, 180);
-    circle(0, 0, 4);
-
-    t += 0.01;
-
-    // =====================
-// Breathing dots (per second)
-// =====================
-if (s !== lastSecond) {
-  dots.push({
-    angle: random(360),
-    radius: random(60, 90),
-    life: random(180, 300),  // 随机寿命
-    decay: random(1.2, 2.2),// 消失速度
-    size: random(2, 6.5)
-    
-  });
-  lastSecond = s;
-}
-
-for (let i = dots.length - 1; i >= 0; i--) {
-  let d = dots[i];
-
-  let x = d.radius * cos(d.angle);
-  let y = d.radius * sin(d.angle);
-
-  noStroke();
-  fill(55, 88, 120, d.life);
-  circle(x, y, d.size);
-
-  d.life -= d.decay;
-
-  if (d.life <= 0) {
-    dots.splice(i, 1);
-  }
-}
-
-bgCounter++;
-  if (bgCounter % 6 === 0) { // 每 6 帧更新一次背景
-    updateBackground();
-  }
-
-  }
-
-     function updateBackground() {
-      // 动态计算颜色，利用t的变化产生渐变
-      let color1 = `oklch(85% 0.14 ${70 + Math.sin(t * 0.2) * 50})`;
-      let color2 = `oklch(85% 0.14 ${210 + Math.cos(t * 0.5) * 40})`;
-
-      // 更新背景渐变
-      document.body.style.background = `linear-gradient(to bottom, ${color1}, ${color2})`;
-
-      // 增加时间，达到不断变化的效果
-      t += 0.01;
-    }
-
-    
-  </script>
+  
 </body>
 </html>
