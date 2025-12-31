@@ -7,7 +7,7 @@ function updateBackground() {
   document.body.style.background =
     `linear-gradient(to bottom, ${color1}, ${color2})`;
 
-  bgT += 0.01;
+  bgT += 0.03;
 }
 
 // 30ms ≈ 33fps，已经很温柔了
