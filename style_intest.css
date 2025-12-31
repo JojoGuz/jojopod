@@ -425,7 +425,7 @@ details > summary:hover {
 
 .image-frame {
   position: relative;
-  width: 60%;
+  width: 70%;
   max-width: 420px;   /* 关键：别太大 */
 }
 
